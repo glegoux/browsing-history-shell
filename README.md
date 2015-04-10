@@ -89,6 +89,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-[bhistory]: https://github.com/glegoux/browsing-history-shell/raw/master/images/bhistory.png "Browsing history"
-[cdprevious]: https://github.com/glegoux/browsing-history-shell/raw/master/images/cdprevious.png "Browsing history"
-[cdnext]: https://github.com/glegoux/browsing-history-shell/raw/master/images/cdnext.png "Browsing history"
+[bhistory]: https://github.com/glegoux/browsing-history-shell/blob/master/bhistory.png "Browsing history"
+[cdprevious]: https://github.com/glegoux/browsing-history-shell/blob/master/cdprevious.png "Browsing history"
+[cdnext]: https://github.com/glegoux/browsing-history-shell/blob/master/cdnext.png "Browsing history"
