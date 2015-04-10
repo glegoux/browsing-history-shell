@@ -49,8 +49,15 @@ git clone https://github.com/glegoux/browsing-history-shell.git
 2) Move `.bashrc_browsing_history` into your home folder.
 
 ```
-mv .bashrc_browsing_history ~/
+cp [git_repository].bashrc_browsing_history ~/
 ```
+
+then delete this local git repository (else use the zip archive), or create a symbolic link :
+
+```
+ln -s [git_repository].bashrc_browsing_history ~/.bashrc_browsing_history
+```
+
 
 3) Insert the following lines into your `~/.bashrc` :
 
