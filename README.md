@@ -12,15 +12,15 @@ The history is accesible in environment variable `HIST_DIR`.
 
 /!\ No one directory should contain the character `:` in its name.
 
-By default, there are a alias `chistory` to show the traditionnal command bash history. And when you make a `cd`, if the standard output of a `ls` is less than 4 lines, then a `ls` is executed. Pay attention to put a redirection into /dev/null if you use cd in in other context. You can decomment the matching lines, to have not this behaviour.
+By default, there are a alias `chistory` to show the traditionnal command bash history. And when you make a `cd`, if the standard output of a `ls` is less than 4 lines, then a `ls` is executed. Pay attention to put a redirection into /dev/null if you use cd in in other context. You can comment the matching lines into `history`, to have not this behaviour.
 
 ## Use Example
 
 The different extra commands are :
 
-1. `bhistory` : To show your browsinf history.
+1. `bhistory` : To show your browsing history.
 
-2. `cd -` (is no more cyclique `cd -` + `cd -` = `cd .` by default) : To go into the previous working directory.
+2. `cd -` (is no more cyclic `cd -` + `cd -` = `cd .` by default) : To go into the previous working directory.
 
 3. `cd +` : To go into the next working directory.
 
