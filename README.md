@@ -59,7 +59,7 @@ fi
 
 Best Regards, don't hesitate to write me, to fix bugs, or improve behaviours.
 
-5. License 
+## License 
 
 The MIT License (MIT)
 
