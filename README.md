@@ -16,6 +16,8 @@ The history is accesible with an environment variable `HIST_DIR`.
 
 By default, there are an alias `chistory` to show the traditionnal command bash history. And when you make a `cd`, if the standard output of a `ls` is less than 4 lines, then a `ls` is executed. Pay attention to put a redirection into /dev/null if you use cd in in other context. You can comment the matching lines into `history`, to have not this behaviour.
 
+/!\ no one file or folder should contain the character `:` in its name to allow the command `cd :<i>`.
+
 ## Use Example
 
 The different extra commands are :
