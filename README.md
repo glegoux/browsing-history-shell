@@ -35,7 +35,7 @@ The different extra commands are :
 
 ![alt text][cdnext]
 
-3) `cd :<i>` : To go into the ie directory in your browsing history.
+3) `cd :<i>` : To go into the *ie* directory in your browsing history.
 
 ![alt text][cdhistory]
 
