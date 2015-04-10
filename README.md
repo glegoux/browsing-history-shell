@@ -6,6 +6,8 @@
 
 Everybody knows the command `history` to show the command bash history. Why is there not a history for browsing ? Personnaly, when I am into a server with SSH connection, I always forget where I was before, in what working directory. I advise you to put in your prompt also the current working directory with `\w` or `$PWD`.
 
+This is only for `Bash Shell` (but it's easy ta adapt for a shell bourn sh or others ...). See that with `cat /etc/passwd | grep $USER` or `echo $SHELL` to know that.
+
 ## Synopsis
 
 The goal is to show your browsing history like a browsing web, but in your shell environment. You can easily go to the previous and next working directory and show your browsing history. 
@@ -57,7 +59,6 @@ then delete this local git repository (else use the zip archive), or create a sy
 ```
 ln -s [git_repository].bashrc_browsing_history ~/.bashrc_browsing_history
 ```
-
 
 3) Insert the following lines into your `~/.bashrc` :
 
