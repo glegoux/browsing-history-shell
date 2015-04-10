@@ -34,7 +34,7 @@ The different extra commands are :
 
 ## Tests
 
-I'm going to write that, because it's important. And I explain here, the particulare cases, if it's ambiguous.
+I'm going to write that, because it's important. And I explain here, the particular cases, if it's ambiguous.
 
 ## Installation
 
