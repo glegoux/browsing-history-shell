@@ -24,13 +24,18 @@ The different extra commands are :
 
 ![alt text][bhistory]
 
-2) `cd -` (is no more cyclic `cd -` + `cd -` = `cd .` by default) : To go into the previous working directory.
+2) `cd -` : To go into the previous working directory in your browsing history.
+            (is no more cyclic `cd -` + `cd -` = `cd .` by default) 
 
 ![alt text][cdprevious]
 
-3) `cd +` : To go into the next working directory.
+3) `cd +` : To go into the next working directory in your browsing history.
 
 ![alt text][cdnext]
+
+3) `cd :<i>` : To go into the ie directory in your browsing history.
+
+![alt text][cdhistory]
 
 ## Tests
 
@@ -75,6 +80,8 @@ Best Regards, don't hesitate to write me, to fix bugs, or improve behaviours.
 
 Released under the MIT License, see LICENSE.
 
-[bhistory]: https://github.com/glegoux/browsing-history-shell/blob/master/bhistory.png "Browsing history"
-[cdprevious]: https://github.com/glegoux/browsing-history-shell/blob/master/cdprevious.png "Browsing history"
-[cdnext]: https://github.com/glegoux/browsing-history-shell/blob/master/cdnext.png "Browsing history"
+[bhistory]: https://github.com/glegoux/browsing-history-shell/blob/master/bhistory.png "bhistory"
+[cdprevious]: https://github.com/glegoux/browsing-history-shell/blob/master/cdprevious.png "cdprevious"
+[cdnext]: https://github.com/glegoux/browsing-history-shell/blob/master/cdnext.png "cdnext"
+[cdhistory]: https://github.com/glegoux/browsing-history-shell/blob/master/cdhistory.png "cdhistory"
+
