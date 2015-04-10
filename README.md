@@ -20,15 +20,15 @@ By default, there are a alias `chistory` to show the traditionnal command bash h
 
 The different extra commands are :
 
-1. `bhistory` : To show your browsing history.
+1) `bhistory` : To show your browsing history.
 
 ![alt text][bhistory]
 
-2. `cd -` (is no more cyclic `cd -` + `cd -` = `cd .` by default) : To go into the previous working directory.
+2) `cd -` (is no more cyclic `cd -` + `cd -` = `cd .` by default) : To go into the previous working directory.
 
 ![alt text][cdprevious]
 
-3. `cd +` : To go into the next working directory.
+3) `cd +` : To go into the next working directory.
 
 ![alt text][cdnext]
 
@@ -38,15 +38,21 @@ I'm going to write that, because it's important. And I explain here, the particu
 
 ## Installation
 
-1. Download this git repo.
+1) Download this git repository :
 
-2. Move `.bashrc_browsing_history` into your home folder.
+```
+git clone https://github.com/glegoux/browsing-history-shell.git
+```
+
+/!\ there are hidden files, see that with a `ls -l`.
+
+2) Move `.bashrc_browsing_history` into your home folder.
 
 ```
 mv .bashrc_browsing_history ~/
 ```
 
-3. Insert the following lines into your `~/.bashrc` :
+3) Insert the following lines into your `~/.bashrc` :
 
 ```bash
 # Import 
@@ -55,7 +61,7 @@ if [ -f ~/.bashrc_browsing_history ]; then
 fi
 ```
 
-4. Let's go and enjoy.
+4) Let's go and enjoy.
 
 Best Regards, don't hesitate to write me, to fix bugs, or improve behaviours.
 
