@@ -1,15 +1,18 @@
 # browsing-history-shell
 
+## 
 
-Installation
 
-move .bashrc_browsing_history into your home folder.
 
-```
+## Installation
+
+move `.bashrc_browsing_history` into your home folder.
+
+```shell
 mv .bashrc_browsing_history ~/
 ```
 
-Insert the following lines into your ~/.bashrc :
+Insert the following lines into your `~/.bashrc` :
 
 ```bash
 # Import 
