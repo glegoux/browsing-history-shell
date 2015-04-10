@@ -1,5 +1,7 @@
 # Browsing History Shell
 
+![alt text][bhistory]
+
 ## Motivation
 
 Everybody knows the command `history` to show the command bash history. Why is there not a history for browsing ? Personnaly, when I am into a server with SSH connection, I always forget where I was before, in what working directory. I advise you to put in your prompt also the current working directory with `\w` or `$PWD`.
@@ -20,9 +22,15 @@ The different extra commands are :
 
 1. `bhistory` : To show your browsing history.
 
+![alt text][bhistory]
+
 2. `cd -` (is no more cyclic `cd -` + `cd -` = `cd .` by default) : To go into the previous working directory.
 
+![alt text][cdprevious]
+
 3. `cd +` : To go into the next working directory.
+
+![alt text][cdnext]
 
 ## Tests
 
@@ -50,3 +58,7 @@ fi
 4. Let's go and enjoy.
 
 Best Regards, don't hesitate to write me, to fix bugs, or improve behaviours.
+
+[bhistory]: https://github.com/glegoux/browsing-history-shell/raw/master/images/bhistory.png "Browsing history"
+[cdprevious]: https://github.com/glegoux/browsing-history-shell/raw/master/images/cdprevious.png "Browsing history"
+[cdnext]: https://github.com/glegoux/browsing-history-shell/raw/master/images/cdnext.png "Browsing history"
