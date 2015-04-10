@@ -1,4 +1,4 @@
-# browsing-history-shell
+# Browsing History Shell
 
 ## Synopsis
 
