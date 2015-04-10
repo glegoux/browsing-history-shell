@@ -10,7 +10,7 @@ Everybody knows the command `history` to show the command bash history. Why is t
 
 The goal is to show your browsing history like a browsing web, but in your shell environment. You can easily go to the previous and next working directory and show your browsing history. 
 
-The history is accesible in environment variable `HIST_DIR`.
+The history is accesible with an environment variable `HIST_DIR`.
 
 /!\ No one directory should contain the character `:` in its name.
 
