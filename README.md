@@ -2,7 +2,7 @@
 
 ## Motivation
 
-Everybody knows the command history to show the command bash history with. Why is there not a history for browsing ? Personnaly, when I am into a server with SSH connection, I forgot always where I was before, in what working directory. I advise you to put in your prompt also the current working directory with \w or $PWD.
+Everybody knows the command `history` to show the command bash history. Why is there not a history for browsing ? Personnaly, when I am into a server with SSH connection, I always forget where I was before, in what working directory. I advise you to put in your prompt also the current working directory with `\w` or `$PWD`.
 
 ## Synopsis
 
@@ -18,7 +18,7 @@ By default, there are a alias `chistory` to show the traditionnal command bash h
 
 The different extra commands are :
 
-1. `bhistory`
+1. `bhistory` : To show your browsinf history.
 
 2. `cd -` (is no more cyclique `cd -` + `cd -` = `cd .` by default) : To go into the previous working directory.
 
