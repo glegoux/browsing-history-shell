@@ -44,7 +44,7 @@ I'm going to write that, because it's important. And I explain here, the particu
 git clone https://github.com/glegoux/browsing-history-shell.git
 ```
 
-/!\ there are hidden files, see that with a `ls -l`.
+/!\ There are hidden files, see that with a `ls -l`.
 
 2) Move `.bashrc_browsing_history` into your home folder.
 
@@ -55,7 +55,7 @@ mv .bashrc_browsing_history ~/
 3) Insert the following lines into your `~/.bashrc` :
 
 ```bash
-# Import 
+# Import Browsing History Shell
 if [ -f ~/.bashrc_browsing_history ]; then
     source ~/.bashrc_browsing_history
 fi
