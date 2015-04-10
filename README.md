@@ -4,7 +4,7 @@
 
 ## Motivation
 
-Everybody knows the command `history` to show the command bash history. Why is there not a history for browsing ? Personnaly, when I am into a server with SSH connection, I always forget where I was before, in what working directory. I advise you to put in your prompt also the current working directory with `\w` or `$PWD`.
+Everybody knows the command `history` to show the command bash history. Why is there not a history for browsing ? Personnaly, when I am into a server with SSH connection, I always forget where I was before, in what working directory. I advise you to put into your prompt (for instance `PS1="\u@\h:\w \\$ "`) also the current working directory with `\w` or `$PWD`.
 
 This is only for `Bash Shell` (but it's easy to adapt for a Shell Bourne `sh` or others ...). See that with `cat /etc/passwd | grep $USER` or `echo $SHELL` to know that.
 
@@ -14,7 +14,7 @@ The goal is to show your browsing history like a browsing web, but in your shell
 
 The history is accesible with an environment variable `HIST_DIR`.
 
-By default, there are an alias `chistory` to show the traditionnal command bash history. And when you make a `cd`, if the standard output of a `ls` is less than 4 lines, then a `ls` is executed. Pay attention to put a redirection into /dev/null if you use cd in in other context. You can comment the matching lines into `history`, to have not this behaviour.
+By default, there are an alias `chistory` to show the traditionnal command bash history. And when you make a `cd`, if the standard output of a `ls` is less than 4 lines, then a `ls` is executed. Pay attention to put a redirection into `/dev/null` if you use `cd` in another context. You can comment the matching lines into `.bashrc_browsing_history`, to have not this behaviour.
 
 /!\ no one file or folder should contain the character `:` in its name to allow the command `cd :<i>`.
 
