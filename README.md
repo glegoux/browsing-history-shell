@@ -36,7 +36,7 @@ The different extra commands are :
 
 ![alt text][cdnext]
 
-4) `cd :<i>` : To go into the *<i>th* directory in your browsing history.
+4) `cd :<i>` : To go into the *\<i\>th* directory in your browsing history.
 
 ![alt text][cdhistory]
 
