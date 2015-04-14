@@ -2,7 +2,7 @@
 
 ![alt text][bhistory]
 
-It takes less than one minute to install, see ** Installation ** !
+It's very useful, becomes quickly essential and take less than one minute to install, see **Installation** !
 
 ## Motivation
 
