@@ -71,7 +71,7 @@ ln -s [git_repository].bashrc_browsing_history ~/.bashrc_browsing_history
 ```bash
 # enable browsing history shell
 if [ -f ~/.bashrc_browsing_history ]; then
-    source ~/.bashrc_browsing_history
+    . ~/.bashrc_browsing_history
 fi
 ```
 
