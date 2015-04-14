@@ -2,6 +2,8 @@
 
 ![alt text][bhistory]
 
+It takes less than one minute to install, see ** Installation ** !
+
 ## Motivation
 
 Everybody knows the command `history` to show the command bash history. Why is there not a history for browsing ? Personnaly, when I am into a server with SSH connection, I always forget where I was before, in what working directory. I advise you to put into your prompt (for instance `PS1="\u@\h:\w \\$ "`) also the current working directory with `\w` or `$PWD`.
