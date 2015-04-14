@@ -12,7 +12,7 @@ This is only for `Bash Shell` (but it's easy to adapt for a Shell Bourne `sh` or
 
 The goal is to show your browsing history like a browsing web, but in your shell environment. You can easily go to the previous and next working directory and show your browsing history. 
 
-The history is accesible with an environment variable `HIST_DIR`.
+The history is accesible with an environment variable `$HIST_DIR`.
 
 By default, there are an alias `chistory` to show the traditionnal command bash history. And when you make a `cd`, if the standard output of a `ls` is less than 4 lines, then a `ls` is executed. Pay attention to put a redirection into `/dev/null` if you use `cd` in another context. You can comment the matching lines into `.bashrc_browsing_history`, to have not this behaviour.
 
@@ -27,7 +27,7 @@ The different extra commands are :
 ![alt text][bhistory]
 
 2) `cd -` : To go into the previous working directory in your browsing history.
-            (is no more cyclic `cd -` + `cd -` = `cd .` by default) 
+            (it is no more cyclic, `cd -` + `cd -` = `cd .` by default) 
 
 ![alt text][cdprevious]
 
@@ -35,7 +35,7 @@ The different extra commands are :
 
 ![alt text][cdnext]
 
-3) `cd :<i>` : To go into the *ie* directory in your browsing history.
+3) `cd :<i>` : To go into the *<i>th* directory in your browsing history.
 
 ![alt text][cdhistory]
 
