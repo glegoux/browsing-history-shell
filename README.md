@@ -69,7 +69,7 @@ ln -s [git_repository].bashrc_browsing_history ~/.bashrc_browsing_history
 3) Insert the following lines into your `~/.bashrc` :
 
 ```bash
-# Import Browsing History Shell
+# enable browsing history shell
 if [ -f ~/.bashrc_browsing_history ]; then
     source ~/.bashrc_browsing_history
 fi
