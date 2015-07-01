@@ -16,11 +16,27 @@ See that with `cat /etc/passwd | grep $USER` or `echo $SHELL` to know that.
 
 The goal is to show your browsing history as a browsing web, but in your shell environment. You can easily go to the previous and next working directory and show your browsing history. 
 
-The history is accesible with an environment variable `$HIST_DIR`.
+Files :
+  ~/.bashrc : executed when a interactive bash shell lauchned.
+  ~/.bashrc_browsing_history : this extension of bashrc.
 
-By default, there are an alias `chistory` to show the traditionnal command bash history. And when you make a `cd`, if the standard output of a `ls` is less than 4 lines, then a `ls` is executed. Pay attention to put a redirection into `/dev/null` if you use `cd` in another context. You can comment the matching lines into `.bashrc_browsing_history`, to have not this behaviour.
+Environment variables :
+  `$BHIST_DIRS` : the browsing history, it's an array.
+  `$BHIST_CUR_INDEX` : Your position is the browsing history.
+  `$BHIST_LEN` : the length of the browsing history.
 
-/!\ No one file or folder should contain the character `:` in its name to allow the command `cd :<i>`.
+Aliases:
+  cd [$1]  : execute an overlayer of 'cd' allowing to update each time the history (see usage). 
+  bhistory : show the browsing history.
+  chistory : show the command bash history (distinguishing the type of history : command or browsing).
+
+By default, there are an alias `chistory` to show the traditionnal command bash history. 
+
+And when you make a `cd`, if the standard output of a `ls` is less than 4 lines, then a `ls` is executed. Pay attention to put a redirection into `/dev/null` if you use `cd` in another context. 
+
+If a foldername is `:<i>`, then this foldername is in conflict with the command `cd :<i>`. If this folder is in the current working directory and you use a 'cd :<i>' a warning, but 'cd ./:<i>' allows to go into this folder.
+
+You can comment or delete the matching lines into `.bashrc_browsing_history`, to have your wanted behaviour (no warning, or no 'ls' of 'cd').
 
 ## Usage
 
@@ -43,30 +59,32 @@ The different extra commands are :
 
 ![alt text][cdhistory]
 
-## Tests
+## Contribution
+
+### Coding Style
+
+Try to use : .
+
+### Tests :
 
 I'm going to write that, because it's important. And I explain here, the particular cases, if it's ambiguous.
 
 ## Installation
 
+Follow the following steps, **[local_git_repository]** is the absolute pathname that you chose to downlaod this git repot.
+
 1) Download this git repository :
 
 ```
-git clone https://github.com/glegoux/browsing-history-shell.git
+git clone https://github.com/glegoux/browsing-history-shell.git [local_git_repository]
 ```
 
-/!\ There are hidden files, see that with a `ls -l`.
+/!\ There are hidden files, see that with a `ls -a`.
 
-2) Move `.bashrc_browsing_history` into your home folder.
-
-```
-cp [git_repository].bashrc_browsing_history ~/
-```
-
-then delete this local git repository (else use the zip archive), or create a symbolic link :
+2) Create a symbolic link :
 
 ```
-ln -s [git_repository].bashrc_browsing_history ~/.bashrc_browsing_history
+ln -s [local_git_repository].bashrc_browsing_history ~/.bashrc_browsing_history
 ```
 
 3) Insert the following lines into your `~/.bashrc` :
@@ -77,6 +95,10 @@ if [ -f ~/.bashrc_browsing_history ]; then
     . ~/.bashrc_browsing_history
 fi
 ```
+
+4) You can update your script with an `git pull` into **[local_git_repository]**.
+
+Of course, you also can just copy the content of `.bashrc_browsing_history`, but the automatic updating will more complicated. 
 
 4) Let's go and enjoy.
 
