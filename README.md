@@ -61,9 +61,9 @@ The different extra commands are :
 
 ### Coding Style
 
-Try to use : https://google-styleguide.googlecode.com/svn/trunk/shell.xml.
+Try to use https://google-styleguide.googlecode.com/svn/trunk/shell.xml.
 
-### Tests :
+### Tests
 
 I'm going to write that, because it's important. And I explain here, the particular cases, if it's ambiguous.
 
@@ -77,7 +77,7 @@ Follow the following steps, **[local_git_repository]** is the absolute pathname 
 git clone https://github.com/glegoux/browsing-history-shell.git [local_git_repository]
 ```
 
-/!\ There are hidden files, see that with a `ls -a`.
+There are hidden files, see that with a `ls -a`.
 
 2) Create a symbolic link :
 
