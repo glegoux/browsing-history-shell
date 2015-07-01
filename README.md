@@ -61,7 +61,7 @@ The different extra commands are :
 
 ### Coding Style
 
-Try to use : .
+Try to use : https://google-styleguide.googlecode.com/svn/trunk/shell.xml.
 
 ### Tests :
 
@@ -69,7 +69,7 @@ I'm going to write that, because it's important. And I explain here, the particu
 
 ## Installation
 
-Follow the following steps, **[local_git_repository]** is the absolute pathname that you chose to downlaod this git repot.
+Follow the following steps, **[local_git_repository]** is the absolute pathname that you chose to download this git repot.
 
 1) Download this git repository :
 
@@ -96,7 +96,7 @@ fi
 
 4) You can update your script with an `git pull` into **[local_git_repository]**.
 
-Of course, you also can just copy the content of `.bashrc_browsing_history`, but the automatic updating will more complicated. 
+Of course, you also can just copy the content of `.bashrc_browsing_history`, but the automatic updating will be more complicated. 
 
 Let's go and enjoy.
 
