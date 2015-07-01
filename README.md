@@ -98,7 +98,7 @@ fi
 
 Of course, you also can just copy the content of `.bashrc_browsing_history`, but the automatic updating will more complicated. 
 
-4) Let's go and enjoy.
+Let's go and enjoy.
 
 Best Regards, don't hesitate to write me, to fix bugs, or improve behaviours.
 
