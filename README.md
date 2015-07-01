@@ -14,30 +14,30 @@ See that with `cat /etc/passwd | grep $USER` or `echo $SHELL` to know that.
 
 ## Synopsis
 
-The goal is to show your browsing history as a browsing web, but in your shell environment. You can easily go to the previous and next working directory and show your browsing history. 
-
-Files :
-  ~/.bashrc : executed when a interactive bash shell lauchned.
-  ~/.bashrc_browsing_history : this extension of bashrc.
-
-Environment variables :
-  `$BHIST_DIRS` : the browsing history, it's an array.
+The goal is to show your browsing history as a browsing web, but in your shell environment. You can easily go to the previous and next working directory and show your browsing history.   
+  
+Files :  
+  ~/.bashrc : executed when a interactive bash shell lauchned.  
+  ~/.bashrc_browsing_history : this extension of bashrc.  
+  
+Environment variables :  
+  `$BHIST_DIRS` : the browsing history, it's an array.  
   `$BHIST_CUR_INDEX` : Your position is the browsing history.
   `$BHIST_LEN` : the length of the browsing history.
+  
+Aliases:  
+  cd [$1]  : execute an overlayer of 'cd' allowing to update each time the history (see usage).   
+  bhistory : show the browsing history.  
+  chistory : show the command bash history (distinguishing the type of history : command or browsing).  
 
-Aliases:
-  cd [$1]  : execute an overlayer of 'cd' allowing to update each time the history (see usage). 
-  bhistory : show the browsing history.
-  chistory : show the command bash history (distinguishing the type of history : command or browsing).
-
-By default, there are an alias `chistory` to show the traditionnal command bash history. 
-
+By default, there are an alias `chistory` to show the traditionnal command bash history.  
+  
 And when you make a `cd`, if the standard output of a `ls` is less than 4 lines, then a `ls` is executed. Pay attention to put a redirection into `/dev/null` if you use `cd` in another context. 
-
+  
 If a foldername is `:<i>`, then this foldername is in conflict with the command `cd :<i>`. If this folder is in the current working directory and you use a 'cd :<i>' a warning, but 'cd ./:<i>' allows to go into this folder.
-
+  
 You can comment or delete the matching lines into `.bashrc_browsing_history`, to have your wanted behaviour (no warning, or no 'ls' of 'cd').
-
+  
 ## Usage
 
 The different extra commands are :
