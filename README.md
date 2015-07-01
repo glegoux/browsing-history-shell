@@ -7,14 +7,14 @@ See **[Installation](https://github.com/glegoux/browsing-history-shell/blob/mast
 
 ## Motivation
 
-Everybody knows the command `history` to show the command bash history. Why is there not a history for browsing ? Personnaly, when I am into a server with SSH connection, I always forget where I was before, in what working directory. I advise you to put into your prompt (for instance `PS1="\u@: \w \\$ "`) also the current working directory with `\w` or `$PWD`.
+Everybody knows the command `history` to show the command bash history. Why is there not a history for browsing ? Personnaly, when I am on a server with SSH connection, I always forget where I was before, in what working directory. I advise you to put the current working directory on your prompt (for instance `PS1="\u@: \w \\$ "`).
 
 This is only for `Bash Shell` (but it's easy to adapt for a Shell Bourne `sh` or others ...).  
 See that with `cat /etc/passwd | grep $USER` or `echo $SHELL` to know that.
 
 ## Synopsis
 
-The goal is to show your browsing history like a browsing web, but in your shell environment. You can easily go to the previous and next working directory and show your browsing history. 
+The goal is to show your browsing history as a browsing web, but in your shell environment. You can easily go to the previous and next working directory and show your browsing history. 
 
 The history is accesible with an environment variable `$HIST_DIR`.
 
@@ -22,24 +22,24 @@ By default, there are an alias `chistory` to show the traditionnal command bash 
 
 /!\ No one file or folder should contain the character `:` in its name to allow the command `cd :<i>`.
 
-## Use Example
+## Usage
 
 The different extra commands are :
 
-1) `bhistory` : To show your browsing history.
+1) `bhistory` : Show your browsing history.
 
 ![alt text][bhistory]
 
-2) `cd -` : To go into the previous working directory in your browsing history.
+2) `cd -` : Go into the previous working directory in your browsing history.
             (it is no more cyclic, `cd -` + `cd -` = `cd .` by default) 
 
 ![alt text][cdprevious]
 
-3) `cd +` : To go into the next working directory in your browsing history.
+3) `cd +` : Go into the next working directory in your browsing history.
 
 ![alt text][cdnext]
 
-4) `cd :<i>` : To go into the *\<i\>th* directory in your browsing history.
+4) `cd :<i>` : Go into the *\<i\>th* directory in your browsing history.
 
 ![alt text][cdhistory]
 
