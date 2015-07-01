@@ -7,7 +7,7 @@ See **[Installation](https://github.com/glegoux/browsing-history-shell/blob/mast
 
 ## Motivation
 
-Everybody knows the command `history` to show the command bash history. Why is there not a history for browsing ? Personnaly, when I am on a server with SSH connection, I always forget where I was before, in what working directory. I advise you to put the current working directory on your prompt (for instance `PS1="\u@: \w \\$ "`).
+Everybody knows the command `history` to show the command bash history. Why is there not a history for browsing ? Personnaly, when I am on a server with SSH connection, I always forget where I was before, in what working directory. I advise you to put the current working directory on your prompt (for instance `PS1="\u@: \w \\$ "` where \w is yout current working directory).
 
 This is only for `Bash Shell` (but it's easy to adapt for a Shell Bourne `sh` or others ...).  
 See that with `cat /etc/passwd | grep $USER` or `echo $SHELL` to know that.
@@ -22,7 +22,7 @@ The goal is to show your browsing history as a browsing web, but in your shell e
   
 **Environment variables**  
   `$BHIST_DIRS` : the browsing history, it's an array.  
-  `$BHIST_CUR_INDEX` : Your position is the browsing history.
+  `$BHIST_CUR_INDEX` : Your position is the browsing history.  
   `$BHIST_LEN` : the length of the browsing history.
   
 **Aliases**  
