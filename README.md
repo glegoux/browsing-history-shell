@@ -40,7 +40,7 @@ You can comment or delete the matching lines into `.bashrc_browsing_history`, to
 
 The different extra commands are :
 
-1) `bhistory` : Show your browsing history.
+1) `bhistory` : Show the browsing history of the current bash shell.
 
 ![alt text][bhistory]
 
