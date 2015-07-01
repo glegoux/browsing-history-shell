@@ -17,7 +17,7 @@ See that with `cat /etc/passwd | grep $USER` or `echo $SHELL` to know that.
 The goal is to show your browsing history as a browsing web, but in your shell environment. You can easily go to the previous and next working directory and show your browsing history.   
   
 **Files**   
-  `~/.bashrc` : executed when a interactive bash shell lauchned.  
+  `~/.bashrc` : executed when a interactive bash shell is lauchned, where this extension is installed.  
   `~/.bashrc_browsing_history` : this extension of bashrc.  
   
 **Environment variables**  
