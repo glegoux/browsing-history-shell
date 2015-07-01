@@ -32,7 +32,7 @@ The goal is to show your browsing history as a browsing web, but in your shell e
   
 And when you make a `cd`, if the standard output of a `ls` is less than 4 lines, then a `ls` is executed. Pay attention to put a redirection into `/dev/null` if you use `cd` in another context. 
   
-If a foldername is `:<i>`, then this foldername is in conflict with the command `cd :<i>`. If this folder is in the current working directory and you use a `cd :<i>` a warning, but `cd ./:<i>` allows to go into this folder.
+If a foldername is `:<i>`, then this foldername is in conflict with the command `cd :<i>`. If this folder is in the current working directory and you use `cd :<i>`, there is a warning, but `cd ./:<i>` allows to go into this folder.
   
 You can comment or delete the matching lines into `.bashrc_browsing_history`, to have your wanted behaviour (no warning for instance).
   
