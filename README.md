@@ -29,7 +29,8 @@ The goal is to show your browsing history as a browsing web, but in your shell e
   `cd [$1]`  : execute an overlayer of 'cd' allowing to update each time the history (see usage).   
   `bhistory` : show the browsing history.  
   `chistory` : show the command bash history (distinguishing the type of history : command or browsing).  
-  
+
+**Notes**    
 And when you make a `cd`, if the standard output of a `ls` is less than 4 lines, then a `ls` is executed. Pay attention to put a redirection into `/dev/null` if you use `cd` in another context. 
   
 If a foldername is `:<i>`, then this foldername is in conflict with the command `cd :<i>`. If this folder is in the current working directory and you use `cd :<i>`, there is a warning, but `cd ./:<i>` allows to go into this folder.
