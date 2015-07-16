@@ -1,5 +1,10 @@
 # Browsing History Shell
 
+<img src="data:image/gif;base64,R0lGODlhDwAPAKECAAAAzMzM/////
+wAAACwAAAAADwAPAAACIISPeQHsrZ5ModrLlN48CXF8m2iQ3YmmKqVlRtW4ML
+wWACH+H09wdGltaXplZCBieSBVbGVhZCBTbWFydFNhdmVyIQAAOw=="
+alt="Base64 encoded image" width="150" height="150"/>
+
 ![alt text][bhistory]
 
 It's very useful, it becomes quickly essential and it takes less than one minute to install.  
