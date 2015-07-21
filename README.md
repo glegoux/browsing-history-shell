@@ -9,14 +9,14 @@ See **[Installation](https://github.com/glegoux/browsing-history-shell/blob/mast
 
 The different extra commands are :
 
-1) `bhistory` : Show the browsing history of the current bash shell.
+* `bhistory` : Show the browsing history of the current bash shell.
 
-2) `cd -` : Go into the previous working directory in your browsing history.
+* `cd -` : Go into the previous working directory in your browsing history.  
             (it is no more cyclic, `cd -` + `cd -` = `cd .` by default) 
 
-3) `cd +` : Go into the next working directory in your browsing history.
+* `cd +` : Go into the next working directory in your browsing history.
 
-4) `cd :<i>` : Go into the *\<i\>th* directory in your browsing history.
+* `cd :<i>` : Go into the *\<i\>th* directory in your browsing history.
 
 ## Motivation
 
