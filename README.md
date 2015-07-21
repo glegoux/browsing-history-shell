@@ -67,7 +67,7 @@ I'm going to write that, because it's important. And I explain here, the particu
 
 ## Installation
 
-Follow the following steps, **[local_git_repository]** is the absolute pathname that you chose to download this git repot.
+Follow the following steps, **[local_git_repository]** is the absolute pathname that you chose to download this git repository.
 
 1) Download this git repository :
 
