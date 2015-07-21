@@ -29,22 +29,26 @@ See that with `cat /etc/passwd | grep $USER` or `echo $SHELL` to know that.
 
 The goal is to show your browsing history as a browsing web, but in your shell environment. You can easily go to the previous and next working directory and show your browsing history.   
   
-**Files**   
-  `~/.bashrc` : executed when a interactive bash shell is lauchned, where this extension is installed.  
-  `~/.bashrc_bhist` : this bashrc extension.
-  `~/.bash_aliases_bhist` : aliases of this bashrc extension.
+**Files**    
+
+* `~/.bashrc` : executed when a interactive bash shell is lauchned, where this extension is installed.  
+* `~/.bashrc_bhist` : this bashrc extension.
+* `~/.bash_aliases_bhist` : aliases of this bashrc extension.
   
 **Environment variables**  
-  `$BHIST_DIRS` : the browsing history, it's an array.  
-  `$BHIST_CUR_INDEX` : Your position is the browsing history.  
-  `$BHIST_LEN` : the length of the browsing history.
+
+* `$BHIST_DIRS` : the browsing history, it's an array.  
+* `$BHIST_CUR_INDEX` : Your position is the browsing history.  
+* `$BHIST_LEN` : the length of the browsing history.
   
 **Aliases**  
-  `cd [$1]`  : execute an overlayer of 'cd' allowing to update each time the history (see usage).   
-  `bhistory` : show the browsing history.  
-  `chistory` : show the command bash history (distinguishing the type of history : command or browsing).  
 
-**Notes**    
+* `cd [$1]`  : execute an overlayer of 'cd' allowing to update each time the history (see usage).   
+* `bhistory` : show the browsing history.  
+* `chistory` : show the command bash history (distinguishing the type of history : command or browsing).  
+
+**Notes**  
+
 And when you make a `cd`, if the standard output of a `ls` is less than 4 lines, then a `ls` is executed. Pay attention to put a redirection into `/dev/null` if you use `cd` in another context. 
   
 If a foldername is `:<i>`, then this foldername is in conflict with the command `cd :<i>`. If this folder is in the current working directory and you use `cd :<i>`, there is a warning, but `cd ./:<i>` allows to go into this folder.
