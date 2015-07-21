@@ -1,0 +1,155 @@
+#!/bin/bash
+#
+# ./run-test.sh
+#
+# Run unit tests in building test environment in container docker,
+# and allow to connect to created container, then offer to delete or not
+# created resources: docker image and docker container.
+
+
+# Global variables
+# manage relative path in executing this script
+cd "$(dirname $0)"
+declare -r WD="$PWD"
+declare -r WDP="$(dirname $WD)"
+declare -r INAME="bhist"
+declare -r CNAME="bhist_test"
+declare -r HOST_VOL="$WDP/test/"
+declare -r CONT_VOL="/home/user/test/"
+declare -r TEST_USER="user"
+declare -r TEST_FILE="/home/user/test/unit-test-wrapper.sh"
+cd - > /dev/null
+
+
+# Import script
+source "${WD}/docker-helper.sh"
+
+
+# Specific function
+
+build_docker_image() {
+
+  >&2 echo "Building docker image(${INAME})... "
+  local uuid
+  local old_uuid=$(get_docker_image_uuid "${INAME}")
+
+  if [[ -z "${old_uuid}" ]]; then
+
+    >&2 docker build -t "${INAME}" -f "${WD}/Dockerfile" "${WDP}/" || return 2
+    uuid=$(get_docker_image_uuid "${INAME}") || return $?
+
+  else
+
+    local old_shortuuid="$(get_short_docker_uuid "${old_uuid}")" || return $?
+    >&2 echo "WARNING: '${FUNCNAME}', the name '${INAME}' is already in use" \
+      "by image ${old_shortuuid}."
+    >&2 echo -n "Use that image ${old_shortuuid} [y/n]: "
+    local answer
+    read answer
+    if [[ -n "${answer}" ]] && [[ "${answer}" != "y" ]]; then
+      >&2 echo "You have to delete (or rename) that image to be able" \
+        "to reuse that name."
+      return 1
+    fi
+    uuid="${old_uuid}"
+
+  fi
+
+  echo "$uuid"
+  return 0
+
+}
+
+
+build_docker_container() {
+
+  >&2 echo -n "Building docker container(${CNAME})... "
+  local uuid
+  local old_uuid=$(get_docker_container_uuid "${CNAME}")
+
+  if [[ -z "${old_uuid}" ]]; then
+
+    uuid=$(docker run -d -i -v "${HOST_VOL}:${CONT_VOL}" --name "${CNAME}" \
+      "${INAME}") || return 2
+    >&2 echo "$(get_short_docker_uuid "$uuid")"
+
+  else
+
+    local old_shortuuid=$(get_short_docker_uuid "${old_uuid}") || return $?
+    >&2 echo
+    >&2 echo "WARNING: '${FUNCNAME}', the name '${CNAME}' is already in use" \
+      "by container ${old_shortuuid}."
+    >&2 echo -n "Use that container $old_shortuuid [y/n]: "
+    local answer
+    read answer
+    if [[ -n "${answer}" ]] && [[ "${answer}" != "y" ]]; then
+      >&2 echo "You have to delete (or rename) that container to be able" \
+        "to reuse that name."
+      return 1
+    fi
+    uuid="${old_uuid}"
+
+  fi
+
+  echo "$uuid"
+  return 0
+
+}
+
+
+# Main function
+if [[ "${FUNCNAME[0]}" == "main" ]]; then
+
+  message() {
+
+    local option=""
+    if [[ $# -gt 1 ]]; then
+      option="$1"
+      shift
+    fi
+    local blue='\033[1;34m'
+    local nc='\033[0m'
+    echo -e $option "${blue}${@}${nc}"
+
+  }
+
+  main() {
+
+    message "*** START: bashrc-browsing-history Tests ***"
+
+    message "- Building environment test:"
+    local iuuid
+    iuuid=$(build_docker_image) || exit $?
+    local cuuid
+    cuuid=$(build_docker_container) || exit $?
+
+    message "- Running unit tests:"
+    echo "Using docker image(${INAME}): $(get_short_docker_uuid "${iuuid}")"
+    echo "Using docker container(${CNAME}): $(get_short_docker_uuid "${cuuid}")"
+    execute_docker_command "${cuuid}" "${TEST_USER}" "${TEST_FILE}"
+
+    message -n "- Connection to container docker [y/n]: "
+    local answer
+    read answer
+    if [[ -z "${answer}" ]] || [[ "${answer}" == "y" ]]; then
+      connect_docker_container "${cuuid}" "${TEST_USER}"
+    fi
+
+    message -n "- Deletion used docker container [y/n]: "
+    read answer
+    if [[ -z "${answer}" ]] || [[ "${answer}" == "y" ]]; then
+      delete_docker_container "${cuuid}"
+      message -n "- Deletion used docker image [y/n]: "
+      read answer
+      if [[ -z "${answer}" ]] || [[ "${answer}" == "y" ]]; then
+        delete_docker_image "${iuuid}"
+      fi
+    fi
+
+    message "*** END ***"
+
+  }
+
+  main
+
+fi
