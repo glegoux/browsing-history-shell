@@ -58,7 +58,9 @@ source "${UNIT_TEST_FILE}"
 
 # Run unit tests
 unit_tests=$(typeset -F | sed "s/declare -f //" | grep test_)
+
 for unit_test in ${unit_tests}; do
+
   echo "Running unit test: ${unit_test} ..."
   init_test
   stdout="$(tempfile -p "bhist" -s _${unit_test}.stdout)"
