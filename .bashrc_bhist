@@ -1,4 +1,4 @@
-# ~/.bashrc_browsing_history
+# ~/.bashrc_bhist
 #
 # Writing an overlayer of 'cd' with a browsing history. 
 # Moreover 'ls' follows 'cd', if possible and relevant.
