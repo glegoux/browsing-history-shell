@@ -1,0 +1,4 @@
+# browsing history aliases
+alias cd="__bhist_changedir $1"
+alias bhistory="__bhist_bhistory"
+alias chistory="history"
