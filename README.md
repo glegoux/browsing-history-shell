@@ -5,6 +5,19 @@
 It's very useful, it becomes quickly essential and it takes less than one minute to install.  
 See **[Installation](https://github.com/glegoux/browsing-history-shell/blob/master/README.md#installation)** !
 
+## Usage
+
+The different extra commands are :
+
+1) `bhistory` : Show the browsing history of the current bash shell.
+
+2) `cd -` : Go into the previous working directory in your browsing history.
+            (it is no more cyclic, `cd -` + `cd -` = `cd .` by default) 
+
+3) `cd +` : Go into the next working directory in your browsing history.
+
+4) `cd :<i>` : Go into the *\<i\>th* directory in your browsing history.
+
 ## Motivation
 
 Everybody knows the command `history` to show the command bash history. Why is there not a history for browsing ? Personnaly, when I am on a server with SSH connection, I always forget where I was before, in what working directory. I advise you to put the current working directory on your prompt (for instance `PS1="\u@: \w \\$ "` where `\w` is your current working directory).
@@ -36,27 +49,6 @@ And when you make a `cd`, if the standard output of a `ls` is less than 4 lines,
 If a foldername is `:<i>`, then this foldername is in conflict with the command `cd :<i>`. If this folder is in the current working directory and you use `cd :<i>`, there is a warning, but `cd ./:<i>` allows to go into this folder.
   
 You can comment or delete the matching lines into `.bashrc_browsing_history`, to have your wanted behaviour (no warning for instance).
-  
-## Usage
-
-The different extra commands are :
-
-1) `bhistory` : Show the browsing history of the current bash shell.
-
-![alt text][bhistory]
-
-2) `cd -` : Go into the previous working directory in your browsing history.
-            (it is no more cyclic, `cd -` + `cd -` = `cd .` by default) 
-
-![alt text][cdprevious]
-
-3) `cd +` : Go into the next working directory in your browsing history.
-
-![alt text][cdnext]
-
-4) `cd :<i>` : Go into the *\<i\>th* directory in your browsing history.
-
-![alt text][cdhistory]
 
 ## Contribution
 
@@ -80,24 +72,30 @@ git clone https://github.com/glegoux/browsing-history-shell.git [local_git_repos
 
 There are hidden files, see that with a `ls -a`.
 
-2) Create a symbolic link :
+2) Create symbolic links :
 
 ```
-ln -s [local_git_repository].bashrc_browsing_history ~/.bashrc_browsing_history
+ln -s [local_git_repository].bashrc_bhist ~/.bashrc_bhist
+ln -s [local_git_repository].bash_aliases_bhist ~/.bashrc_aliases_bhist
 ```
 
 3) Insert the following lines into your `~/.bashrc` :
 
 ```bash
-# enable browsing history shell
-if [ -f ~/.bashrc_browsing_history ]; then
-    . ~/.bashrc_browsing_history
+# enable browsing history
+if [ -f ~/.bashrc_bhist ]; then
+    . ~/.bashrc_bhist
+fi
+
+# enable browsing history aliases
+if [ -f ~/.bash_aliases_bhist ]; then
+    . ~/.bash_aliases_bhist
 fi
 ```
 
 4) You can update your script with an `git pull` into **[local_git_repository]**.
 
-Of course, you also can just copy the content of `.bashrc_browsing_history`, but the automatic updating will be more complicated. 
+Of course, you also can just copy the content of each file wihout creating symbolic links, but the automatic updating will be more complicated than 'git pull'. 
 
 Let's go and enjoy.
 
