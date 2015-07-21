@@ -31,7 +31,8 @@ The goal is to show your browsing history as a browsing web, but in your shell e
   
 **Files**   
   `~/.bashrc` : executed when a interactive bash shell is lauchned, where this extension is installed.  
-  `~/.bashrc_browsing_history` : this extension of bashrc.  
+  `~/.bashrc_bhist` : this bashrc extension.
+  `~/.bash_aliases_bhist` : aliases of this bashrc extension.
   
 **Environment variables**  
   `$BHIST_DIRS` : the browsing history, it's an array.  
@@ -48,7 +49,7 @@ And when you make a `cd`, if the standard output of a `ls` is less than 4 lines,
   
 If a foldername is `:<i>`, then this foldername is in conflict with the command `cd :<i>`. If this folder is in the current working directory and you use `cd :<i>`, there is a warning, but `cd ./:<i>` allows to go into this folder.
   
-You can comment or delete the matching lines into `.bashrc_browsing_history`, to have your wanted behaviour (no warning for instance).
+You can comment or delete the matching lines into `.bashrc_bhist`, to have your wanted behaviour (no warning for instance).
 
 ## Contribution
 
@@ -76,7 +77,7 @@ There are hidden files, see that with a `ls -a`.
 
 ```
 ln -s [local_git_repository].bashrc_bhist ~/.bashrc_bhist
-ln -s [local_git_repository].bash_aliases_bhist ~/.bashrc_aliases_bhist
+ln -s [local_git_repository].bash_aliases_bhist ~/.bash_aliases_bhist
 ```
 
 3) Insert the following lines into your `~/.bashrc` :
