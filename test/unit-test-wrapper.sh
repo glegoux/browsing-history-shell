@@ -6,14 +6,14 @@ declare -r UNIT_TEST_FILE="${PWD}/unit-tests.sh"
 cd - > /dev/null
 declare -r TEST_USER="user"
 declare -r TEST_ORIGIN_DIR="/home/user"
+declare -r BHIST_PATHNAME="~/.bashrc_bhist"
+declare -r BHIST_ALIAS_PATHNAME="~/.bash_aliases_bhist"
 
 
 # Helper unit test
 init_test() {
   cd > /dev/null
-  BHIST_DIRS=([0]="${PWD}")
-  BHIST_CUR_INDEX=0
-  BHIST_LEN=1
+  source "$BHIST_PATHNAME"
 }
 
 get_comments() {
@@ -50,8 +50,8 @@ mkdir -p {A,B,C}/{1,2,3} D/{:2,+,-}
 # Enable alias in this non-interactive script
 shopt -s expand_aliases
 
-# Enable browsing history in this scipt
-source ~/.bashrc_browsing_history
+# Enable browsing history aliases
+source "$BHIST_ALIAS_PATHNAME"
 
 # Import unit tests
 source "${UNIT_TEST_FILE}"
