@@ -38,8 +38,8 @@ The goal is to show your browsing history as a browsing web, but in your shell e
 **Environment variables**  
 
 * `$BHIST_DIRS` : the browsing history, it's an array.  
-* `$BHIST_CUR_INDEX` : Your position is the browsing history.  
-* `$BHIST_LEN` : the length of the browsing history.
+* `$BHIST_CUR_INDEX` : Your position is the browsing history, it's an integer.  
+* `$BHIST_LEN` : the length of the browsing history, it's an integer.
   
 **Aliases**  
 
