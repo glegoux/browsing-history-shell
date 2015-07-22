@@ -40,12 +40,16 @@ The goal is to show your browsing history as a browsing web, but in your shell e
 * `$BHIST_DIRS` : the browsing history, it's an array.  
 * `$BHIST_CUR_INDEX` : Your position is the browsing history, it's an integer.  
 * `$BHIST_LEN` : the length of the browsing history, it's an integer.
-  
+
+**Functions**  
+
+* `__bhist_history` : show the browsing history. 
+* `__bhist_changedir [$1]` : execute an overlayer of 'cd' allowing to update each time the history (see usage).
+
+
 **Aliases**  
 
-* `cd [$1]`  : execute an overlayer of 'cd' allowing to update each time the history (see usage).   
-* `bhistory` : show the browsing history.  
-* `chistory` : show the command bash history (distinguishing the type of history : command or browsing).  
+see  `~/.bash_aliases_bhist`
 
 **Notes**  
 
@@ -55,15 +59,14 @@ If a foldername is `:<i>`, then this foldername is in conflict with the command 
   
 You can comment or delete the matching lines into `.bashrc_bhist`, to have your wanted behaviour (no warning for instance).
 
-## Contribution
 
-### Coding Style
+## Coding Style
 
 Try to use https://google-styleguide.googlecode.com/svn/trunk/shell.xml.
 
-### Tests
+## Tests
 
-I'm going to write that, because it's important. And I explain here, the particular cases, if it's ambiguous.
+Use container docker with unit tests see `test/`.
 
 ## Installation
 
