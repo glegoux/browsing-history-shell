@@ -12,6 +12,7 @@ die() {
 init_test_suite() {
 
   cd
+  echo "go to $PWD"
 
   # Check and build unit test environment
   [[ "$(id -un)" == "$BHIST_USER" ]] \
@@ -20,8 +21,8 @@ init_test_suite() {
   [[ "$(pwd)" == "$BHIST_HOME" ]] \
     || die "pwd sould be '$BHIST_HOME'"
 
-  mkdir -p {A,B,C}/{1,2,3} D/{:2,+,-} E/
-  chmod 000 E
+  mkdir -vp {A,B,C}/{1,2,3} D/{:2,+,-} E/
+  chmod -v 000 E
 
   # Enable browsing history
   source "$BHIST_HOME/$BHIST_FILENAME"
@@ -30,22 +31,22 @@ init_test_suite() {
 
 clean_test_suite() {
 
-  rm -rf ~/{A,B,C,D,E}
+  rm -rfv ~/{A,B,C,D,E}
 
 }
 
 init_test() {
-
+  set -x
   cd > /dev/null
   BHIST_DIRS=([0]="$PWD")
   BHIST_CUR_INDEX=0
   BHIST_LEN=1
+  set +x
 
 }
 
 clean_test() {
-  # nothing to do
-  return 0
+  echo nothing to do
 }
 
 
