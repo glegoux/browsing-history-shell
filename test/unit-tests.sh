@@ -21,6 +21,7 @@ init_test_suite() {
     || die "pwd sould be '$BHIST_HOME'"
 
   mkdir -p {A,B,C}/{1,2,3} D/{:2,+,-} E/
+  chmod 000 E
 
   # Enable browsing history
   source "$BHIST_HOME/$BHIST_FILENAME"
@@ -29,10 +30,7 @@ init_test_suite() {
 
 clean_test_suite() {
 
-  # Disable alias in this non-interactive shell
-  shopt -u expand_aliases
-
-  rm -rf ~/{A,B,C,D}
+  rm -rf ~/{A,B,C,D,E}
 
 }
 

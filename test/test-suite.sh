@@ -28,7 +28,7 @@ source "$UNIT_TEST_PATHNAME"
 
 init_test_suite
 
-#trap '[[ $? -ne 0 ]] && clean_test_suite' EXIT
+trap '[ $? -eq 0 ] || clean_test_suite' EXIT
 
 # Run unit tests
 unit_tests=$(typeset -F | sed "s/declare -f //" | grep ^test_)
@@ -39,7 +39,7 @@ for unit_test in ${unit_tests}; do
 
   init_test
 
-  #trap '[[ $? -ne 0 ]] && clean_test' EXIT
+  trap '[ $? -eq 0 ] || clean_test' EXIT
 
   stdout=$(tempfile -p "bhist" -s "_${unit_test}.stdout")
   stderr=$(tempfile -p "bhist" -s "_${unit_test}.stderr")

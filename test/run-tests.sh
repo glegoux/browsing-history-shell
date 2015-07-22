@@ -17,7 +17,7 @@ declare -r CNAME="bhist_test"
 declare -r HOST_VOL="$WDP/test/"
 declare -r CONT_VOL="/home/user/test/"
 declare -r TEST_USER="user"
-declare -r SUITE_TEST_FILE="/home/user/test/unit-test-wrapper.sh"
+declare -r TEST_SUITE_FILE="/home/user/test/test-suite.sh"
 declare -r UNIT_TEST_FILE="/home/user/test/unit-tests.sh"
 cd - > /dev/null
 
@@ -129,9 +129,9 @@ if [[ "${FUNCNAME[0]}" == "main" ]]; then
     echo "Using docker image(${INAME}): $(get_short_docker_uuid "${iuuid}")"
     echo "Using docker container(${CNAME}): $(get_short_docker_uuid "${cuuid}")"
     echo
-    execute_docker_command "${cuuid}" "${TEST_USER}" "${SUITE_TEST_FILE} ${UNIT_TEST_FILE}"
+    execute_docker_command "${cuuid}" "${TEST_USER}" "${TEST_SUITE_FILE} ${UNIT_TEST_FILE}"
 
-    message -n "- Connection to container docker [y/n]: "
+    message -n "- Connection to container docker for interactive tests [y/n]: "
     local answer
     read answer
     if [[ -z "${answer}" ]] || [[ "${answer}" == "y" ]]; then
