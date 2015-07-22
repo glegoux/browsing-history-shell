@@ -49,7 +49,7 @@ The goal is to show your browsing history as a browsing web, but in your shell e
 
 **Aliases**  
 
-see  **([`~/.bash_aliases_bhist`](https://github.com/glegoux/browsing-history-shell/blob/master/.bash_aliases_bhist)**.
+see  **[~/.bash_aliases_bhist](https://github.com/glegoux/browsing-history-shell/blob/master/.bash_aliases_bhist)**.  
 
 **Notes**  
 
@@ -66,7 +66,9 @@ Try to use https://google-styleguide.googlecode.com/svn/trunk/shell.xml.
 
 ## Tests
 
-Use container docker with unit tests see `test/`.
+Use container docker with unit tests.  
+
+See  **[test/](https://github.com/glegoux/browsing-history-shell/blob/master/test/)**.
 
 ## Installation
 
