@@ -3,24 +3,24 @@ FROM ubuntu:14.04
 MAINTAINER Gilles Legoux <gilles.legoux@gmail.com>
 
 # environment variable
-ENV USER user
-ENV HOME /home/$USER
-ENV BHIST_FILE .bashrc_bhist
-ENV BHIST_ALIAS_FILE .bash_aliases_bhist
+ENV BHIST_USER user
+ENV BHIST_HOME /home/$BHIST_USER
+ENV BHIST_FILENAME .bashrc_bhist
+ENV BHIST_ALIAS_FILENAME .bash_aliases_bhist
 
 # build environment
-RUN adduser --disabled-password --gecos "" user
-COPY $BHIST_FILE $HOME/$BHIST_FILE
-RUN chown user:user $HOME/$BHIST_FILE
-COPY $BHIST_ALIAS_FILE $HOME/$BHIST_ALIAS_FILE
-RUN chown user:user $HOME/$BHIST_ALIAS_FILE
+RUN adduser --disabled-password --gecos "" $BHIST_USER
+COPY $BHIST_FILENAME $BHIST_HOME/$BHIST_FILENAME
+RUN chown $BHIST_USER:$BHIST_USER $BHIST_HOME/$BHIST_FILENAME
+COPY $BHIST_ALIAS_FILENAME $BHIST_HOME/$BHIST_ALIAS_FILENAME
+RUN chown $BHIST_USER:$BHIST_USER $BHIST_HOME/$BHIST_ALIAS_FILENAME
 RUN echo "\n" \
   "# enable browsing history\n" \
-  "if [ -f ~/$BHIST_FILE ]; then\n" \
-  "  . ~/$BHIST_FILE\n" \
+  "if [ -f ~/$BHIST_FILENAME ]; then\n" \
+  "  . ~/$BHIST_FILENAME\n" \
   "fi\n" \
   "\n" \
   "# enable browsing history shell\n" \
-  "if [ -f ~/$BHIST_ALIAS_FILE ]; then\n" \
-  "  . ~/$BHIST_ALIAS_FILE\n" \
-  "fi\n" >> /home/user/.bashrc
+  "if [ -f ~/$BHIST_ALIAS_FILENAME ]; then\n" \
+  "  . ~/$BHIST_ALIAS_FILENAME\n" \
+  "fi\n" >> $BHIST_HOME/.bashrc

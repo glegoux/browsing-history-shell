@@ -17,7 +17,8 @@ declare -r CNAME="bhist_test"
 declare -r HOST_VOL="$WDP/test/"
 declare -r CONT_VOL="/home/user/test/"
 declare -r TEST_USER="user"
-declare -r TEST_FILE="/home/user/test/unit-test-wrapper.sh"
+declare -r SUITE_TEST_FILE="/home/user/test/unit-test-wrapper.sh"
+declare -r UNIT_TEST_FILE="/home/user/test/unit-tests.sh"
 cd - > /dev/null
 
 
@@ -120,13 +121,15 @@ if [[ "${FUNCNAME[0]}" == "main" ]]; then
     message "- Building environment test:"
     local iuuid
     iuuid=$(build_docker_image) || exit $?
+    echo
     local cuuid
     cuuid=$(build_docker_container) || exit $?
 
     message "- Running unit tests:"
     echo "Using docker image(${INAME}): $(get_short_docker_uuid "${iuuid}")"
     echo "Using docker container(${CNAME}): $(get_short_docker_uuid "${cuuid}")"
-    execute_docker_command "${cuuid}" "${TEST_USER}" "${TEST_FILE}"
+    echo
+    execute_docker_command "${cuuid}" "${TEST_USER}" "${SUITE_TEST_FILE} ${UNIT_TEST_FILE}"
 
     message -n "- Connection to container docker [y/n]: "
     local answer

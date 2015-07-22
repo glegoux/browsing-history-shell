@@ -1,23 +1,10 @@
 #!/bin/bash
 
-# Environment variables
-cd $(dirname "$0")
-declare -r UNIT_TEST_FILE="${PWD}/unit-tests.sh"
-cd - > /dev/null
-declare -r TEST_USER="user"
-declare -r TEST_ORIGIN_DIR="/home/user"
-declare -r BHIST_PATHNAME="~/.bashrc_bhist"
-declare -r BHIST_ALIAS_PATHNAME="~/.bash_aliases_bhist"
+declare -r UNIT_TEST_PATHNAME="$1"
 
-
-# Helper unit test
-init_test() {
-  cd > /dev/null
-  source "$BHIST_PATHNAME"
-}
-
+# Helper test suite
 get_comments() {
-  cat ${UNIT_TEST_FILE} | sed -n "/$1() {/,/}/p" | grep '#' | sed "s/^[ ]*//"
+  cat "${UNIT_TEST_PATHNAME}" | sed -n "/^$1() {$/,/}/p" | grep '#' | sed "s/^[ ]*//"
 }
 
 get_stdout() {
@@ -32,45 +19,51 @@ get_exit_status() {
   echo "$1" | grep '^## exit status' | sed 's/^## exit status //'
 }
 
-die() {
-  >&2 echo "ERROR: $1 !"
-  exit 1
+get_location() {
+  echo "$1" | grep '^## location' | sed 's/^## location //'
 }
 
-# Check and build unit test environment
-[[ "$(id -un)" == "${TEST_USER}" ]] \
-  || die "current user should be '${TEST_USER}'"
-
-[[ "$(pwd)" == "${PWD}" ]] \
-  || die "pwd sould be '${TEST_ORIGIN_DIR}'"
-
-cd
-mkdir -p {A,B,C}/{1,2,3} D/{:2,+,-}
-
-# Enable alias in this non-interactive script
-shopt -s expand_aliases
-
-# Enable browsing history aliases
-source "$BHIST_ALIAS_PATHNAME"
-
 # Import unit tests
-source "${UNIT_TEST_FILE}"
+source "$UNIT_TEST_PATHNAME"
+
+init_test_suite
+
+#trap '[[ $? -ne 0 ]] && clean_test_suite' EXIT
 
 # Run unit tests
-unit_tests=$(typeset -F | sed "s/declare -f //" | grep test_)
+unit_tests=$(typeset -F | sed "s/declare -f //" | grep ^test_)
 for unit_test in ${unit_tests}; do
+
   echo "Running unit test: ${unit_test} ..."
+
   init_test
-  stdout="$(tempfile -p "bhist" -s _${unit_test}.stdout)"
-  stderr="$(tempfile -p "bhist" -s _${unit_test}.stderr)"
+
+  #trap '[[ $? -ne 0 ]] && clean_test' EXIT
+
+  stdout=$(tempfile -p "bhist" -s "_${unit_test}.stdout")
+  stderr=$(tempfile -p "bhist" -s "_${unit_test}.stderr")
   "${unit_test}" > "${stdout}" 2> "${stderr}"
   exit_status=$?
+  location="${PWD}"
 
   comments=$(get_comments "${unit_test}")
 
+  expected_stderr=$(get_stderr "${comments}")
+  echo "expected stderr:"
+  [[ -n "${expected_stderr}" ]] && echo "${expected_stderr}"
+  echo "given stderr:"
+  stderr=$(cat "${stderr}" | sed 's/^.*line [0-9]*: /bash: /')
+  [[ -n "${stderr}" ]] && echo "${stderr}"
+  if [[ "$(echo "${expected_stderr}")" == "$(echo "${stderr}")" ]]; then
+    echo "--> stderr OK"
+  else
+    >&2 echo "--> stderr KO"
+    exit 1
+  fi
+
   expected_stdout=$(get_stdout "${comments}")
   echo "expected stdout:"
-  [[ -n ${expected_stdout} ]] && echo "${expected_stdout}"
+  [[ -n "${expected_stdout}" ]] && echo "${expected_stdout}"
   echo "given stdout:"
   cat "$stdout"
   if [[ "$(echo -n "${expected_stdout}")" == "$(cat "${stdout}")" ]]; then
@@ -80,30 +73,30 @@ for unit_test in ${unit_tests}; do
     exit 1
   fi
 
-  expected_stderr=$(get_stderr "${comments}")
-  echo "expected stderr:"
-  [[ -n ${expected_stderr} ]] && echo "${expected_stderr}"
-  echo "given stderr:"
-  cat "${stderr}"
-  if [[ "$(echo "${expected_stderr}")" == "$(cat "${stderr}")" ]]; then
-    echo "--> stderr OK"
-  else
-    >&2 echo "--> stderr KO"
-    exit 1
-  fi
-
   expected_exit_status=$(get_exit_status "${comments}")
   echo "expected exit status: ${expected_exit_status}"
   echo "given exit status: ${exit_status}"
   if [[ "${expected_exit_status}" == "${exit_status}" ]]; then
     echo "--> exit status OK"
   else
-    >&2 echo "--> exit status OK"
+    >&2 echo "--> exit status KO"
     exit 1
   fi
+
+  expected_location=$(get_location "${comments}")
+  echo "expected location: ${expected_location}"
+  echo "given location: ${location}"
+  if [[ "${expected_location}" == "${location}" ]]; then
+    echo "--> location OK"
+  else
+    >&2 echo "--> location KO"
+    exit 1
+  fi
+
   echo
+
+  clean_test
 
 done
 
-# Disable alias in this non-interactive shell
-shopt -u expand_aliases
+clean_test_suite
