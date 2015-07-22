@@ -22,14 +22,8 @@ init_test_suite() {
 
   mkdir -p {A,B,C}/{1,2,3} D/{:2,+,-}
 
- # Enable alias in this non-interactive script
-  shopt -s expand_aliases
-
   # Enable browsing history
   source "$BHIST_HOME/$BHIST_FILENAME"
-
-  # Enable browsing history aliases
-  source "$BHIST_HOME/$BHIST_ALIAS_FILENAME"
 
 }
 
