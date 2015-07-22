@@ -20,7 +20,7 @@ init_test_suite() {
   [[ "$(pwd)" == "$BHIST_HOME" ]] \
     || die "pwd sould be '$BHIST_HOME'"
 
-  mkdir -p {A,B,C}/{1,2,3} D/{:2,+,-}
+  mkdir -p {A,B,C}/{1,2,3} D/{:2,+,-} E/
 
   # Enable browsing history
   source "$BHIST_HOME/$BHIST_FILENAME"
@@ -94,6 +94,15 @@ test_4() {
   ## stdout
   ## stderr
   # bash: cd: aaa: No such file or directory
+  ## exit status 1
+  ## location /home/user
+  __bhist_changedir aaa
+}
+
+test_5() {
+  ## stdout
+  ## stderr
+  # bash: cd: E: Permission denied
   ## exit status 1
   ## location /home/user
   __bhist_changedir aaa
