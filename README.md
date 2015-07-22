@@ -112,7 +112,7 @@ Best Regards, don't hesitate to write me, to fix bugs, or improve behaviours.
 
 ## License 
 
-Released under the MIT License, see[LICENSE](https://github.com/glegoux/browsing-history-shell/blob/master/license/).
+Released under the MIT License, see [LICENSE](https://github.com/glegoux/browsing-history-shell/blob/master/LICENSE/).
 
 [bhistory]: https://github.com/glegoux/browsing-history-shell/blob/master/media/bhistory.png "bhistory"
 [cdprevious]: https://github.com/glegoux/browsing-history-shell/blob/master/media/cdprevious.png "cdprevious"
