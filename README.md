@@ -67,7 +67,7 @@ Try to use https://google-styleguide.googlecode.com/svn/trunk/shell.xml.
 
 ## Tests
 
-Use container docker with unit tests. See  **[test/](https://github.com/glegoux/browsing-history-shell/blob/master/test/)**.
+Use container docker with unit tests. See  [test/](https://github.com/glegoux/browsing-history-shell/blob/master/test/).
 
 ## Installation
 
@@ -112,7 +112,7 @@ Best Regards, don't hesitate to write me, to fix bugs, or improve behaviours.
 
 ## License 
 
-Released under the MIT License, see LICENSE.
+Released under the MIT License, see[LICENSE](https://github.com/glegoux/browsing-history-shell/blob/master/license/).
 
 [bhistory]: https://github.com/glegoux/browsing-history-shell/blob/master/media/bhistory.png "bhistory"
 [cdprevious]: https://github.com/glegoux/browsing-history-shell/blob/master/media/cdprevious.png "cdprevious"
