@@ -105,5 +105,5 @@ test_5() {
   # bash: cd: E: Permission denied
   ## exit status 1
   ## location /home/user
-  __bhist_changedir aaa
+  __bhist_changedir E
 }
