@@ -32,6 +32,7 @@ init_test_suite
 
 # Run unit tests
 unit_tests=$(typeset -F | sed "s/declare -f //" | grep ^test_)
+
 for unit_test in ${unit_tests}; do
 
   echo "Running unit test: ${unit_test} ..."

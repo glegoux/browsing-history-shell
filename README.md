@@ -12,7 +12,7 @@ The different extra commands are :
 * `bhistory` : Show the browsing history of the current bash shell.
 
 * `cd -` : Go into the previous working directory in your browsing history.  
-            (it is no more cyclic, `cd -` + `cd -` = `cd .` by default) 
+           By default, it is cyclic, `cd -` + `cd -` = `cd .`, no longer.
 
 * `cd +` : Go into the next working directory in your browsing history.
 
