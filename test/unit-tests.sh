@@ -42,12 +42,13 @@ clean_test_suite() {
 }
 
 init_test() {
-  set -x
-  cd > /dev/null
+ 
+  cd
+  echo "go to $PWD"
   BHIST_DIRS=([0]="$PWD")
   BHIST_CUR_INDEX=0
   BHIST_LEN=1
-  set +x
+  echo "reset BHIST_DIRS, BHIST_CUR_INDEX and BHIST_LEN"
 
 }
 
