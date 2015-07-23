@@ -32,76 +32,61 @@ declare -ar FUNCTIONS=(init_test_suite clean_test_suite init_test clean_test)
 # Helper test suite
 
 die() {
-
   >&2 echo "ERROR: $1 !"
   exit 1
-
 }
 
 
 check_functions() {
-
   for f in ${FUNCTIONS[*]}; do
     declare -F "$f" > /dev/null || die "'$0', no implementation in $UNIT_TEST_PATHNAME for $f"
   done
-
 }
 
 
 get_comments() {
-
   local res=$(cat "${UNIT_TEST_PATHNAME}" | sed -n "/^$1() {$/,/^}$/p" | grep '#' | sed "s/^[ ]*//")
   if [[ -z "$res" ]]; then
     return 1
   fi
  echo "$res"
  return 0
-
 }
 
 
 get_stdout() {
-
   local pattern="^## stdout"
   local res=$(echo "$1" | sed -n "/$pattern/,/##/p" | grep "$pattern") && return 1
   echo "$res" | sed 1d | sed '$d' | sed 's/^# //'
   return 0
-
 }
 
 
 get_stderr() {
-
   local pattern="^## stderr"
   local res=$(echo "$1" | sed -n "/$pattern/,/##/p" | grep "$pattern") && return 1
   echo "$res" | sed 1d | sed '$d' | sed 's/^# //'
   return 0
-
 }
 
 
 get_exit_status() {
- 
   local pattern="^## exit status "
   local res=$(echo "$1" | grep "$pattern")
   echo "$res" | sed "s/$pattern//"
   return 0
-
 }
 
 
 get_location() {
-
   local pattern="^## location"
   local res=$(echo "$1" | grep "$pattern")
   echo "$res" | sed "s/$pattern//"
   return 0
-
 }
 
 
 clean_test_suite_verbose() {
-
   local is_ko="${1-false}"
   echo "Cleaning test suite ..."
   clean_test_suite
@@ -111,12 +96,10 @@ clean_test_suite_verbose() {
   else
     echo "--> All unit tests OK."
   fi
-
 }
 
 
 clean_test_verbose() {
-
   echo
   local unit_test="$1"
   local is_ko="${2-false}"
@@ -126,7 +109,6 @@ clean_test_verbose() {
     echo
     clean_test_suite_verbose "$is_ko"
   fi
-
 }
 
 
