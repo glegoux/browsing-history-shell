@@ -1,9 +1,13 @@
-#!/bin/bash
+# test_suite.sh
 
 declare -r UNIT_TEST_PATHNAME="$1"
 declare -ar FUNCTIONS=(init_test_suite clean_test_suite init_test clean_test)
 
 # Helper test suite
+
+usage() {
+  echo "Usage:"
+}
 
 die() {
 
@@ -171,10 +175,7 @@ for unit_test in ${unit_tests}; do
   fi
 
   clean_test_verbose "${unit_test}"
-
-  echo
-
-
+  
 done
 
 echo
