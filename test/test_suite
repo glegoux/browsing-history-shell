@@ -4,9 +4,11 @@
 #
 # Run test suite for a set of unit tests.
 
+
 usage() {
   echo "Usage: $(basename "$0")"
 }
+
 
 if [[ $# -ne 1 ]]; then
   echo "ERROR: '$(basename "$0")', require one argument !"
@@ -26,8 +28,10 @@ else
   esac
 fi
 
+
 declare -r UNIT_TEST_PATHNAME="$1"
 declare -ar FUNCTIONS=(init_test_suite clean_test_suite init_test clean_test)
+
 
 # Helper test suite
 
@@ -49,40 +53,48 @@ get_comments() {
   if [[ -z "$res" ]]; then
     return 1
   fi
- echo "$res"
- return 0
+  echo "$res"
+  return 0
+}
+
+
+get_content() {
+  local pattern="$1"
+  echo "$2" | grep -q "$pattern" || return 1
+  echo "$2" | sed -n "/$pattern/,/##/p" | sed 1d | sed '$d' | sed 's/^# //'
+  return 0
+}
+
+
+get_line() {
+  local pattern="$1"
+  echo "$2" | grep -q "$pattern" || return 1
+  echo "$2" | grep "$pattern" | sed "s/$pattern//"
+  return 0
 }
 
 
 get_stdout() {
-  local pattern="^## stdout"
-  local res=$(echo "$1" | sed -n "/$pattern/,/##/p" | grep "$pattern") && return 1
-  echo "$res" | sed 1d | sed '$d' | sed 's/^# //'
-  return 0
+  get_content "^## stdout" "$1"
+  return $?
 }
 
 
 get_stderr() {
-  local pattern="^## stderr"
-  local res=$(echo "$1" | sed -n "/$pattern/,/##/p" | grep "$pattern") && return 1
-  echo "$res" | sed 1d | sed '$d' | sed 's/^# //'
-  return 0
+  get_content "^## stderr" "$1"
+  return $?
 }
 
 
 get_exit_status() {
-  local pattern="^## exit status "
-  local res=$(echo "$1" | grep "$pattern")
-  echo "$res" | sed "s/$pattern//"
-  return 0
+  get_line "^## exit status " "$1"
+  return $?
 }
 
 
 get_location() {
-  local pattern="^## location"
-  local res=$(echo "$1" | grep "$pattern")
-  echo "$res" | sed "s/$pattern//"
-  return 0
+  get_line "^## location " "$1"
+  return $?
 }
 
 
@@ -105,8 +117,8 @@ clean_test_verbose() {
   local is_ko="${2-false}"
   echo "Cleaning unit test: ${unit_test} ..."
   clean_test "$unit_test"
+  echo
   if "$is_ko"; then
-    echo
     clean_test_suite_verbose "$is_ko"
   fi
 }
@@ -126,10 +138,9 @@ trap '[ $? -eq 0 ] || clean_test_suite_verbose true' EXIT
 
 unit_tests=$(typeset -F | sed "s/declare -f //" | grep ^test_)
 
-[[ -z "${unit_tests}" ]] && echo "no one unit test"
+[[ -z "${unit_tests}" ]] && echo -e "no one unit test\n"
 
 for unit_test in ${unit_tests}; do
-
 
   echo "Initializing unit test: ${unit_test} ..."
   init_test "${unit_test}"
@@ -146,7 +157,8 @@ for unit_test in ${unit_tests}; do
 
   comments=$(get_comments "${unit_test}")
   if [[ $? -ne 0 ]]; then
-    echo "WARNING: no comment found !"
+    echo "no comment found !"
+    clean_test_verbose "${unit_test}"
     continue
   fi
 
@@ -167,43 +179,48 @@ for unit_test in ${unit_tests}; do
   fi
 
   expected_stdout=$(get_stdout "${comments}")
-  echo "--STDOUT:"
-  echo "- given stdout:"
-  cat "$stdout"
-  echo "- expected stdout:"
-  [[ -n "${expected_stdout}" ]] && echo "${expected_stdout}"
-  if [[ "$(echo -n "${expected_stdout}")" == "$(cat "${stdout}")" ]]; then
-    echo "--> stdout OK"
-  else
-    >&2 echo "--> stdout KO"
-    exit 1
+  if [[ $? -eq 0 ]]; then
+    echo "--STDOUT:"
+    echo "- given stdout:"
+    cat "$stdout"
+    echo "- expected stdout:"
+    [[ -n "${expected_stdout}" ]] && echo "${expected_stdout}"
+    if [[ "$(echo -n "${expected_stdout}")" == "$(cat "${stdout}")" ]]; then
+      echo "--> stdout OK"
+    else
+      >&2 echo "--> stdout KO"
+      exit 1
+    fi
   fi
 
   expected_exit_status=$(get_exit_status "${comments}")
-  echo "--EXIT STATUS:"
-  echo "- given exit status: ${exit_status}"
-  echo "- expected exit status: ${expected_exit_status}"
-  if [[ "${expected_exit_status}" == "${exit_status}" ]]; then
-    echo "--> exit status OK"
-  else
-    >&2 echo "--> exit status KO"
-    exit 1
+  if [[ $? -eq 0 ]]; then
+    echo "--EXIT STATUS:"
+    echo "- given exit status: ${exit_status}"
+    echo "- expected exit status: ${expected_exit_status}"
+    if [[ "${expected_exit_status}" == "${exit_status}" ]]; then
+      echo "--> exit status OK"
+    else
+      >&2 echo "--> exit status KO"
+      exit 1
+    fi
   fi
 
   expected_location=$(get_location "${comments}")
-  echo "--LOCATION:"
-  echo "- given location: ${location}"
-  echo "- expected location: ${expected_location}"
-  if [[ "${expected_location}" == "${location}" ]]; then
-    echo "--> location OK"
-  else
-    >&2 echo "--> location KO"
-    exit 1
+  if [[ $? -eq 0 ]]; then
+    echo "--LOCATION:"
+    echo "- given location: ${location}"
+    echo "- expected location: ${expected_location}"
+    if [[ "${expected_location}" == "${location}" ]]; then
+      echo "--> location OK"
+    else
+      >&2 echo "--> location KO"
+      exit 1
+    fi
   fi
 
   clean_test_verbose "${unit_test}"
-  
+
 done
 
-echo
 clean_test_suite_verbose
