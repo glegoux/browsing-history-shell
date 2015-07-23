@@ -44,8 +44,7 @@ The goal is to show your browsing history as a browsing web, but in your shell e
 **Functions**  
 
 * `__bhist_history` : show the browsing history. 
-* `__bhist_changedir [$1]` : execute an overlayer of 'cd' allowing to update each time the history  
-                            ( See [Usage](https://github.com/glegoux/browsing-history-shell/blob/master/README.md#usage)* with alias `cd`).
+* `__bhist_changedir [$1]` : execute an overlayer of 'cd' allowing to update each time the history.  
 
 
 **Aliases**  

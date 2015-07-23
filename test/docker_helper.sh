@@ -1,8 +1,6 @@
-#!/bin/bash
+# ./docker_helper.sh
 #
-# ./docker-helper.sh
-#
-# Provider function suite to use docker version 1.7.0.
+# Provide bash function suite to use docker version 1.7.0.
 
 
 get_docker_image_uuid() {
