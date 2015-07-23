@@ -6,10 +6,8 @@
 # Helper
 
 die() {
-
   >&2 echo "ERROR: $1 !"
   exit 1
-
 }
 
 
