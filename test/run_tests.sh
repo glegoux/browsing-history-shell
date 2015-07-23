@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# ./run-test.sh
+# run_tests.sh
 #
 # Run unit tests in building test environment in container docker,
 # and allow to connect to created container, then offer to delete or not
