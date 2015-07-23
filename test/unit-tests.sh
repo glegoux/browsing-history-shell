@@ -1,4 +1,7 @@
-#!/bin/bash
+# unit_tests.sh
+#
+# Provide a set of unit tests and override function to use test_suite.sh.
+
 
 # Override function for test suite
 
