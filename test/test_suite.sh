@@ -93,7 +93,8 @@ clean_test_verbose() {
 }
 
 
-# Import unit tests
+# Run unit tests
+
 source "$UNIT_TEST_PATHNAME"
 
 echo "Initializing test suite ..."
@@ -104,7 +105,6 @@ echo
 
 trap '[ $? -eq 0 ] || clean_test_suite_verbose true' EXIT
 
-# Run unit tests
 unit_tests=$(typeset -F | sed "s/declare -f //" | grep ^test_)
 
 [[ -z "${unit_tests}" ]] && echo "no one unit test"
