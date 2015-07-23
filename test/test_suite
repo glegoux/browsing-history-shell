@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# test_suite.sh
+# ./test_suite
 #
 # Run test suite for a set of unit tests.
 
@@ -9,12 +9,9 @@ usage() {
 }
 
 if [[ $# -ne 1 ]]; then
-
   echo "ERROR: '$(basename "$0")', require one argument !"
   exit 1
-
 else
-
   case "$1" in
     "-h"|"--help")
       usage
@@ -27,7 +24,6 @@ else
       fi
       ;;
   esac
-
 fi
 
 declare -r UNIT_TEST_PATHNAME="$1"
