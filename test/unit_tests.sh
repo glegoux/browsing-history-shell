@@ -105,6 +105,7 @@ test_4() {
   __bhist_changedir aaa
 }
 
+
 test_5() {
   ## stdout
   ## stderr
