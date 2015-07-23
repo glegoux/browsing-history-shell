@@ -15,22 +15,23 @@ if [[ $# -ne 1 ]]; then
 
 else
 
-  case "$1" in "-h"|"--help")
-                 usage()
-                 ;;
-               *)
-                 if [[ -f "$1" ]]; then
-                   declare -r U2NIT_TEST_PATHNAME="$1"
-                   declare -ar FUNCTIONS=(init_test_suite clean_test_suite init_test clean_test)
-                 else
-                   echo "ERROR: '$(basename "$0")', incorrect argument '$1' !"
-                   exit 1
-                 fi
-               ;;
+  case "$1" in
+    "-h"|"--help")
+      usage
+      exit 0
+      ;;
+    *)
+      if [[ ! -f "$1" ]]; then
+        echo "ERROR: '$(basename "$0")', incorrect argument '$1' !"
+        exit 1
+      fi
+      ;;
   esac
-     
+
 fi
 
+declare -r UNIT_TEST_PATHNAME="$1"
+declare -ar FUNCTIONS=(init_test_suite clean_test_suite init_test clean_test)
 
 # Helper test suite
 

@@ -17,7 +17,7 @@ declare -r CNAME="bhist_test"
 declare -r HOST_VOL="$WDP/test/"
 declare -r CONT_VOL="/home/user/test/"
 declare -r TEST_USER="user"
-declare -r TEST_SUITE_FILE="/home/user/test/test_suite.sh"
+declare -r TEST_SUITE_FILE="/home/user/test/test_suite"
 declare -r UNIT_TEST_FILE="/home/user/test/unit_tests.sh"
 cd - > /dev/null
 
