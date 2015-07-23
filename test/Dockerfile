@@ -1,4 +1,4 @@
-# Dockerfile browsing-history-shell
+# Dockerfile
 FROM ubuntu:14.04
 MAINTAINER Gilles Legoux <gilles.legoux@gmail.com>
 
