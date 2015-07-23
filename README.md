@@ -66,7 +66,7 @@ Try to use https://google-styleguide.googlecode.com/svn/trunk/shell.xml.
 
 ## Tests
 
-Use container docker with unit tests. See  [test/](https://github.com/glegoux/browsing-history-shell/blob/master/test/).
+Use container docker with interactive and unit tests. Launch the script `./run`. See  [test/](https://github.com/glegoux/browsing-history-shell/blob/master/test/).
 
 ## Installation
 
