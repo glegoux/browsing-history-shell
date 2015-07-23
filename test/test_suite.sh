@@ -1,15 +1,38 @@
 #!/bin/bash
 #
 # test_suite.sh
-
-declare -r UNIT_TEST_PATHNAME="$1"
-declare -ar FUNCTIONS=(init_test_suite clean_test_suite init_test clean_test)
-
-# Helper test suite
+#
+# Run test suite for a set of unit tests.
 
 usage() {
-  echo "Usage:"
+  echo "Usage: $(basename "$0")"
 }
+
+if [[ $# -ne 1 ]]; then
+
+  echo "ERROR: '$(basename "$0")', require one argument !"
+  exit 1
+
+else
+
+  case "$1" in "-h"|"--help")
+                 usage()
+                 ;;
+               *)
+                 if [[ -f "$1" ]]; then
+                   declare -r U2NIT_TEST_PATHNAME="$1"
+                   declare -ar FUNCTIONS=(init_test_suite clean_test_suite init_test clean_test)
+                 else
+                   echo "ERROR: '$(basename "$0")', incorrect argument '$1' !"
+                   exit 1
+                 fi
+               ;;
+  esac
+     
+fi
+
+
+# Helper test suite
 
 die() {
 
