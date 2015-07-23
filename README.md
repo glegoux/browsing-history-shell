@@ -1,6 +1,6 @@
 # Browsing History Shell
 
-![alt text][bhistory]
+![alt text][demo]
 
 It's very useful, it becomes quickly essential and it takes less than one minute to install.  
 See [Installation](https://github.com/glegoux/browsing-history-shell/blob/master/README.md#installation) !
@@ -113,8 +113,5 @@ Best Regards, don't hesitate to write me, to fix bugs, or improve behaviours.
 
 Released under the MIT License, see [LICENSE](https://github.com/glegoux/browsing-history-shell/blob/master/LICENSE/).
 
-[bhistory]: https://github.com/glegoux/browsing-history-shell/blob/master/media/bhistory.png "bhistory"
-[cdprevious]: https://github.com/glegoux/browsing-history-shell/blob/master/media/cdprevious.png "cdprevious"
-[cdnext]: https://github.com/glegoux/browsing-history-shell/blob/master/media/cdnext.png "cdnext"
-[cdhistory]: https://github.com/glegoux/browsing-history-shell/blob/master/media/cdhistory.png "cdhistory"
+[demo]: https://github.com/glegoux/browsing-history-shell/blob/master/media/demo.gif "demo"
 
