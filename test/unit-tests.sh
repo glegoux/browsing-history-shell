@@ -1,6 +1,6 @@
 # unit_tests.sh
 #
-# Provide a set of unit tests and override function to use test_suite.sh.
+# Provide a set of unit tests and define functions to use test_suite.sh.
 
 
 # Helper
@@ -13,7 +13,7 @@ die() {
 }
 
 
-# Override function for test suite
+# Define functions to use test suite.sh
 
 init_test_suite() {
 
