@@ -3,7 +3,7 @@
 # ./run
 #
 # Run unit tests in building test environment in container docker,
-# and allow to connect to created container, then offer to delete or not
+# and allow to connect to created container for interactive tests, then offer to delete or not
 # created resources: docker image and docker container.
 
 
