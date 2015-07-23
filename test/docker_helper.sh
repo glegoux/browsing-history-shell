@@ -1,4 +1,4 @@
-# ./docker_helper.sh
+# docker_helper.sh
 #
 # Provide bash function suite to use docker version 1.7.0.
 
