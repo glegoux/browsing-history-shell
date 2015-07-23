@@ -50,35 +50,52 @@ check_functions() {
 
 get_comments() {
 
-  cat "${UNIT_TEST_PATHNAME}" | sed -n "/^$1() {$/,/}/p" | grep '#' | sed "s/^[ ]*//"
+  local res=$(cat "${UNIT_TEST_PATHNAME}" | sed -n "/^$1() {$/,/^}$/p" | grep '#' | sed "s/^[ ]*//")
+  if [[ -z "$res" ]]; then
+    return 1
+  fi
+ echo "$res"
+ return 0
 
 }
 
 
 get_stdout() {
 
-  echo "$1" | sed -n "/## stdout/,/##/p" | sed 1d | sed '$d' | sed 's/^# //'
+  local pattern="^## stdout"
+  local res=$(echo "$1" | sed -n "/$pattern/,/##/p" | grep "$pattern") && return 1
+  echo "$res" | sed 1d | sed '$d' | sed 's/^# //'
+  return 0
 
 }
 
 
 get_stderr() {
 
-  echo "$1" | sed -n "/## stderr/,/##/p" | sed 1d | sed '$d' | sed 's/^# //'
+  local pattern="^## stderr"
+  local res=$(echo "$1" | sed -n "/$pattern/,/##/p" | grep "$pattern") && return 1
+  echo "$res" | sed 1d | sed '$d' | sed 's/^# //'
+  return 0
 
 }
 
 
 get_exit_status() {
-
-  echo "$1" | grep '^## exit status' | sed 's/^## exit status //'
+ 
+  local pattern="^## exit status "
+  local res=$(echo "$1" | grep "$pattern")
+  echo "$res" | sed "s/$pattern//"
+  return 0
 
 }
 
 
 get_location() {
 
-  echo "$1" | grep '^## location' | sed 's/^## location //'
+  local pattern="^## location"
+  local res=$(echo "$1" | grep "$pattern")
+  echo "$res" | sed "s/$pattern//"
+  return 0
 
 }
 
@@ -136,7 +153,7 @@ for unit_test in ${unit_tests}; do
   init_test "${unit_test}"
   echo
 
-  trap '[ $? -eq 0 ] || clean_test_verbose "${unit_test}" "true"' EXIT
+  trap '[ $? -eq 0 ] || clean_test_verbose "${unit_test}" true' EXIT
 
   echo "Running unit test: ${unit_test} ..."
   stdout=$(tempfile -p "bhist" -s "_${unit_test}.stdout")
@@ -146,19 +163,25 @@ for unit_test in ${unit_tests}; do
   location="${PWD}"
 
   comments=$(get_comments "${unit_test}")
+  if [[ $? -ne 0 ]]; then
+    echo "WARNING: no comment found !"
+    continue
+  fi
 
   expected_stderr=$(get_stderr "${comments}")
-  echo "--STDERR:"
-  echo "- given stderr:"
-  stderr=$(cat "${stderr}" | sed 's/^.*line [0-9]*: /bash: /')
-  [[ -n "${stderr}" ]] && echo "${stderr}"
-  echo "- expected stderr:"
-  [[ -n "${expected_stderr}" ]] && echo "${expected_stderr}"
-  if [[ "$(echo "${expected_stderr}")" == "$(echo "${stderr}")" ]]; then
-    echo "--> stderr OK"
-  else
-    >&2 echo "--> stderr KO"
-    exit 1
+  if [[ $? -eq 0 ]]; then
+    echo "--STDERR:"
+    echo "- given stderr:"
+    stderr=$(cat "${stderr}" | sed 's/^.*line [0-9]*: /bash: /')
+    [[ -n "${stderr}" ]] && echo "${stderr}"
+    echo "- expected stderr:"
+    [[ -n "${expected_stderr}" ]] && echo "${expected_stderr}"
+    if [[ "$(echo "${expected_stderr}")" == "$(echo "${stderr}")" ]]; then
+      echo "--> stderr OK"
+    else
+      >&2 echo "--> stderr KO"
+      exit 1
+    fi
   fi
 
   expected_stdout=$(get_stdout "${comments}")
