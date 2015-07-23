@@ -1,30 +1,64 @@
 #!/bin/bash
 
 declare -r UNIT_TEST_PATHNAME="$1"
+declare -ar FUNCTIONS=(init_test_suite clean_test_suite init_test clean_test)
 
 # Helper test suite
-get_comments() {
-  cat "${UNIT_TEST_PATHNAME}" | sed -n "/^$1() {$/,/}/p" | grep '#' | sed "s/^[ ]*//"
+
+die() {
+
+  >&2 echo "ERROR: $1 !"
+  exit 1
+
 }
+
+
+check_functions() {
+
+  for f in ${FUNCTIONS[*]}; do
+    declare -F "$f" > /dev/null || die "'$0', no implementation in $UNIT_TEST_PATHNAME for $f"
+  done
+
+}
+
+
+get_comments() {
+
+  cat "${UNIT_TEST_PATHNAME}" | sed -n "/^$1() {$/,/}/p" | grep '#' | sed "s/^[ ]*//"
+
+}
+
 
 get_stdout() {
+
   echo "$1" | sed -n "/## stdout/,/##/p" | sed 1d | sed '$d' | sed 's/^# //'
+
 }
+
 
 get_stderr() {
+
   echo "$1" | sed -n "/## stderr/,/##/p" | sed 1d | sed '$d' | sed 's/^# //'
+
 }
+
 
 get_exit_status() {
+
   echo "$1" | grep '^## exit status' | sed 's/^## exit status //'
+
 }
 
+
 get_location() {
+
   echo "$1" | grep '^## location' | sed 's/^## location //'
+
 }
 
 
 clean_test_suite_verbose() {
+
   local is_ko="${1-false}"
   echo "Cleaning test suite ..."
   clean_test_suite
@@ -34,10 +68,12 @@ clean_test_suite_verbose() {
   else
     echo "--> All unit tests OK."
   fi
+
 }
 
 
 clean_test_verbose() {
+
   echo
   local unit_test="$1"
   local is_ko="${2-false}"
@@ -47,6 +83,7 @@ clean_test_verbose() {
     echo
     clean_test_suite_verbose "$is_ko"
   fi
+
 }
 
 
@@ -54,6 +91,8 @@ clean_test_verbose() {
 source "$UNIT_TEST_PATHNAME"
 
 echo "Initializing test suite ..."
+check_functions
+
 init_test_suite
 echo
 
@@ -61,6 +100,8 @@ trap '[ $? -eq 0 ] || clean_test_suite_verbose true' EXIT
 
 # Run unit tests
 unit_tests=$(typeset -F | sed "s/declare -f //" | grep ^test_)
+
+[[ -z "${unit_tests}" ]] && echo "no one unit test"
 
 for unit_test in ${unit_tests}; do
 
@@ -136,4 +177,5 @@ for unit_test in ${unit_tests}; do
 
 done
 
+echo
 clean_test_suite_verbose

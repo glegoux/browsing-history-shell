@@ -17,13 +17,13 @@ declare -r CNAME="bhist_test"
 declare -r HOST_VOL="$WDP/test/"
 declare -r CONT_VOL="/home/user/test/"
 declare -r TEST_USER="user"
-declare -r TEST_SUITE_FILE="/home/user/test/test-suite.sh"
-declare -r UNIT_TEST_FILE="/home/user/test/unit-tests.sh"
+declare -r TEST_SUITE_FILE="/home/user/test/test_suite.sh"
+declare -r UNIT_TEST_FILE="/home/user/test/unit_tests.sh"
 cd - > /dev/null
 
 
 # Import script
-source "${WD}/docker-helper.sh"
+source "${WD}/docker_helper.sh"
 
 
 # Specific function
