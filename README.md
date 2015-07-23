@@ -32,8 +32,8 @@ The goal is to show your browsing history as a browsing web, but in your shell e
 **Files**    
 
 * `~/.bashrc_bhist` : this bashrc extension.
-* `~/.bash_aliases_bhist` : aliases of this bashrc extension.
-* * `~/.bashrc` : bashrc file where this extension is installed. 
+* `~/.bash_aliases_bhist` : aliases of this bashrc extension.  
+* `~/.bashrc` : bashrc file where this extension is installed.  
   
 **Environment variables**  
 
