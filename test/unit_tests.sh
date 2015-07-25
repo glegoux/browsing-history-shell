@@ -113,6 +113,7 @@ test_5() {
   __bhist_changedir E
 }
 
+
 test_6() {
   ## stdout
   #  0 /home/user
