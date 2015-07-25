@@ -25,7 +25,7 @@ init_test_suite() {
   [[ "$(pwd)" == "$BHIST_HOME" ]] \
     || die "pwd sould be '$BHIST_HOME'"
 
-  mkdir -vp {A,B,C}/{1,2,3} D/{:2,+,-} E/ "F F/""
+  mkdir -vp {A,B,C}/{1,2,3} D/{:2,+,-} E/ "F F/"
   chmod -v 000 E
 
   # Enable browsing history
@@ -35,12 +35,12 @@ init_test_suite() {
 
 clean_test_suite() {
 
-  rm -rfv ~/{A,B,C,D,E}
+  rm -rfv ~/{A,B,C,D,E,"F F"}
 
 }
 
 init_test() {
- 
+
   cd
   echo "go to $PWD"
   BHIST_DIRS=([0]="$PWD")
@@ -122,4 +122,6 @@ test_6() {
   ## exit status 0
   ## location /home/user/F F
   __bhist_changedir F\ F > /dev/null
+  __bhist_bhistory
 }
+
