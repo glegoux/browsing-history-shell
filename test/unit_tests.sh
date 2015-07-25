@@ -1,6 +1,6 @@
 # unit_tests.sh
 #
-# Provide a set of unit tests and define functions to use test_suite.sh.
+# Provide a set of unit tests and define functions to use the script ./test_suite.
 
 
 # Helper
@@ -11,7 +11,7 @@ die() {
 }
 
 
-# Define functions to use test suite.sh
+# Define functions to use the script ./test_suite.
 
 init_test_suite() {
 
