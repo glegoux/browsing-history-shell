@@ -25,7 +25,7 @@ init_test_suite() {
   [[ "$(pwd)" == "$BHIST_HOME" ]] \
     || die "pwd sould be '$BHIST_HOME'"
 
-  mkdir -vp {A,B,C}/{1,2,3} D/{:2,+,-} E/ "F F/"
+  mkdir -vp {A,B,C}/{1,2,3} D/{:2,+,-,:-1} E/ "F F/"
   chmod -v 000 E
 
   # Enable browsing history
@@ -57,7 +57,7 @@ clean_test() {
 
 # Unit tests
 
-test_1() {
+test_01() {
   ## stdout
   #  0 /home/user
   #  1 /home/user/A
@@ -74,7 +74,7 @@ test_1() {
 }
 
 
-test_2() {
+test_02() {
   ## stdout
   ## stderr
   # ERROR: 'cd +', impossible out of range browsing history.
@@ -84,7 +84,7 @@ test_2() {
 }
 
 
-test_3() {
+test_03() {
   ## stdout
   ## stderr
   # ERROR: 'cd -', impossible out of range browsing history.
@@ -94,7 +94,7 @@ test_3() {
 }
 
 
-test_4() {
+test_04() {
   ## stdout
   ## stderr
   # bash: cd: aaa: No such file or directory
@@ -104,7 +104,7 @@ test_4() {
 }
 
 
-test_5() {
+test_05() {
   ## stdout
   ## stderr
   # bash: cd: E: Permission denied
@@ -114,7 +114,7 @@ test_5() {
 }
 
 
-test_6() {
+test_06() {
   ## stdout
   #  0 /home/user
   # *1 /home/user/F F
@@ -125,3 +125,92 @@ test_6() {
   __bhist_bhistory
 }
 
+
+test_07() {
+  ## stdout
+  #  0 /home/user
+  #  1 /home/user/A
+  #  2 /home/user/B
+  #  3 /home/user/D
+  # *4 /home/user/D/:2
+  ## stderr
+  # WARNING: 'cd :2', folder ':2' exists, go into this with 'cd ./:2'.
+  ## exit status 0
+  ## location /home/user/D/:2
+  __bhist_changedir A > /dev/null
+  __bhist_changedir ../B > /dev/null
+  __bhist_changedir ../D > /dev/null
+  __bhist_changedir :2 > /dev/null
+  __bhist_changedir ../D/:2 > /dev/null
+  __bhist_bhistory
+}
+
+
+test_08() {
+  ## stdout
+  # *0 /home/user
+  #  1 /home/user/A
+  #  2 /home/user/B
+  ## stderr
+  ## exit status 0
+  ## location /home/user
+  __bhist_changedir A > /dev/null
+  __bhist_changedir ../B > /dev/null
+  __bhist_changedir - > /dev/null
+  __bhist_changedir - > /dev/null
+  __bhist_bhistory
+}
+
+
+test_09() {
+  ## stdout
+  #  0 /home/user
+  #  1 /home/user/A
+  # *2 /home/user/B
+  ## stderr
+  ## exit status 0
+  ## location /home/user/B
+  __bhist_changedir A > /dev/null
+  __bhist_changedir ../B > /dev/null
+  __bhist_changedir :0 > /dev/null
+  __bhist_changedir B > /dev/null
+  __bhist_bhistory
+}
+
+
+test_10() {
+  ## stdout
+  #  0 /home/user
+  #  1 /home/user/A
+  #  2 /home/user/B
+  # *3 /home/user/C
+  ## stderr
+  # ERROR: 'cd :4', impossible out of range browsing history.
+  ## exit status 1
+  ## location /home/user/C
+  __bhist_changedir A > /dev/null
+  __bhist_changedir ../B > /dev/null
+  __bhist_changedir ../C > /dev/null
+  __bhist_bhistory
+  __bhist_changedir :4 > /dev/null
+}
+
+
+test_11() {
+  ## stdout
+  #  0 /home/user
+  #  1 /home/user/A
+  #  2 /home/user/B
+  #  3 /home/user/C
+  #  4 /home/user/D
+  # *5 /home/user/D/:-1
+  ## stderr
+  ## exit status 0
+  ## location /home/user/D/:-1
+  __bhist_changedir A > /dev/null
+  __bhist_changedir ../B > /dev/null
+  __bhist_changedir ../C > /dev/null
+  __bhist_changedir ../D > /dev/null
+  __bhist_changedir :-1 > /dev/null
+  __bhist_bhistory
+}
