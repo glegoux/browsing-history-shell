@@ -123,3 +123,23 @@ test_6() {
   ## location /home/user/F F
   __bhist_changedir F\ F > /dev/null
 }
+
+test_7() {
+  ## stdout
+  #  0 /home/user
+  #  1 /home/user/A
+  #  2 /home/user/B
+  #  3 /home/user/D
+  #  4 /home/user/B
+  #  5 /home/user/:2
+  ## stderr
+  # WARNING
+  ## exit status 0
+  ## location /home/user/:2
+  __bhist_changedir A > /dev/null
+  __bhist_changedir ../B > /dev/null
+  __bhist_changedir ../D > /dev/null
+  __bhist_changedir :2 > /dev/null
+  __bhist_changedir ../:2 > /dev/null
+  __bhist_bhistory
+}
