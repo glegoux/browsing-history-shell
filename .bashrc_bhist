@@ -23,7 +23,7 @@ declare -xi BHIST_LEN=1
 # Exit Status:
 #   0: diplay on STDOUT the current browsing history in chronical order with 
 #      a ascending number at the begining of each line, and with a star indicating
-#      the position of your current worrking directory in browsing history.
+#      the position of your current working directory in browsing history.
 #
 __bhist_bhistory() {
 
