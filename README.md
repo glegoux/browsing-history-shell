@@ -56,8 +56,8 @@ If a foldername is `:<i>`, then this foldername is in conflict with the command 
   
 You can comment or delete the matching lines into `.bashrc_bhist`, to have your wanted behaviour (no warning for instance).
 
-Aliases are disabled in shell script by default, you can enable `cd` alias in a shell script with `shopt -s expand_aliases` (see http://www.gnu.org/software/bash/manual/bash.html#The-Shopt-Builtin)
-You can check taht with `type cd` or `alias`.
+Aliases are disabled in shell script by default, you can enable `cd` alias in a shell script with `shopt -s expand_aliases` (see http://www.gnu.org/software/bash/manual/bash.html#The-Shopt-Builtin).
+if you activate this shell option, check that with `shopt`, then `type cd` or `alias cd`.
 
 ## Coding Style
 
