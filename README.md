@@ -87,8 +87,8 @@ There are hidden files, see that with `ls -a`.
 2) Create symbolic links in going to your local git repository :
 
 ```
-ln -s .bashrc_bhist ~/.bashrc_bhist
-ln -s .bash_aliases_bhist ~/.bash_aliases_bhist
+ln -s "$PWD"/.bashrc_bhist ~/.bashrc_bhist
+ln -s "$PWD"/.bash_aliases_bhist ~/.bash_aliases_bhist
 ```
 
 3) Insert the following lines into your `~/.bashrc` :
@@ -105,7 +105,7 @@ if [ -f ~/.bash_aliases_bhist ]; then
 fi
 ```
 
-4) You can update your script with an `git pull` into **[local_git_repository]**.
+4) You can update your script with an `git pull`.
 
 Of course, you also can just copy the content of each file wihout creating symbolic links, but the automatic updating will be more complicated than 'git pull'. 
 
