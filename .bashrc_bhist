@@ -132,3 +132,7 @@ __bhist_changedir() {
   fi
 
 }
+
+# Aliases
+alias cd="__bhist_changedir"
+alias bhistory="__bhist_history"
