@@ -1,4 +1,3 @@
 # ~/.bash_aliases_bhist
 alias cd="__bhist_changedir"
 alias bhistory="__bhist_history"
-alias chistory="history"
