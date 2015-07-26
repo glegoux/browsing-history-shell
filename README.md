@@ -72,8 +72,7 @@ Launch the script `./run`.
 See [test/](https://github.com/glegoux/browsing-history-shell/blob/master/test/).  
 
 *Note*  
-
-Don't use the aliases 'cd' or 'bhistory' in an unit test because it's a bash function, that is a compound (see http://www.gnu.org/software/bash/manual/bash.html#Aliases).
+* Don't use the aliases `cd` or `bhistory` in an unit test because it's a bash function, that is a compound (see http://www.gnu.org/software/bash/manual/bash.html#Aliases).
 
 ## Installation
 
