@@ -65,7 +65,13 @@ Try to use https://google-styleguide.googlecode.com/svn/trunk/shell.xml.
 
 ## Tests
 
-Use docker container for interactive and unit tests. Launch the script `./run`. See  [test/](https://github.com/glegoux/browsing-history-shell/blob/master/test/).  
+Use docker container for interactive and unit tests.   
+
+Launch the script `./run`.   
+
+See [test/](https://github.com/glegoux/browsing-history-shell/blob/master/test/).  
+
+*Note*  
 
 Don't use the aliases 'cd' or 'bhistory' in an unit test because it's a bash function, that is a compound (see http://www.gnu.org/software/bash/manual/bash.html#Aliases).
 
