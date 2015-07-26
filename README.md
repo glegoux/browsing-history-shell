@@ -52,13 +52,19 @@ See  [~/.bash_aliases_bhist](https://github.com/glegoux/browsing-history-shell/b
 
 **Notes**  
 
-And when you make a `cd`, if the standard output of a `ls` is less than 4 lines, then a `ls` is executed. Pay attention to put a redirection into `/dev/null` if you use `cd` in another context. 
+When you are doing `cd`, if the standard output of `ls` is less than 4 lines, then a `ls` is executed. Pay attention to put a redirection to `/dev/null` if you use `cd` in another context. 
   
-If a foldername is `:<i>`, then this foldername is in conflict with the command `cd :<i>`. If this folder is in the current working directory and you use `cd :<i>`, there is a warning, but `cd ./:<i>` allows to go into this folder.
-  
-You can comment or delete the matching lines in `.bashrc_bhist`, in order to have your wanted behaviour (no warning for instance).
+If the current directory contents a foder `:<i>`, then this foldername is in conflict with the command `cd :<i>`. If you use `cd :<i>`, there is a warning in the error output, use `cd ./:<i>` to go to this folder.
+
+If you are browsing in your browsing history, this isn't stored in your browsing history. You can do `cd .` to have the last location a new time in your browsing history.
+
+If you make `cd +`, `cd -` or `cd :<i>` out of browsing history range, there is an error.
+
+The consecutive location duplicates in the browsing history are deleted automatically.
 
 Aliases are disabled in shell script by default, you can enable `cd` alias in a shell script with `shopt -s expand_aliases` (see http://www.gnu.org/software/bash/manual/bash.html#The-Shopt-Builtin). If you activate this shell option, check that with `shopt`, then `type cd` or `alias cd`.
+
+You can comment or delete the matching lines in `.bashrc_bhist`, in order to have your wanted behaviour (no warning for instance).
 
 ## Coding Style
 
