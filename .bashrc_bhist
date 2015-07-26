@@ -25,7 +25,7 @@ declare -xi BHIST_LEN=1
 #      a ascending number at the begining of each line, and with a star indicating
 #      the position of your current working directory in browsing history.
 #
-__bhist_bhistory() {
+__bhist_history() {
 
   for i in ${!BHIST_DIRS[*]}; do
     if test $i -eq $BHIST_CUR_INDEX; then
