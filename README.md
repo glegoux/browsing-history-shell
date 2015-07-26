@@ -121,7 +121,7 @@ fi
 
 4) You can update your script with an `git pull`.
 
-Of course, you also can just copy the content of each file wihout creating symbolic links, but the automatic updating will be more complicated than 'git pull'. 
+Of course, you also can just copy the content of each file wihout creating symbolic links, but the automatic updating will be more complicated than `git pull`. 
 
 Let's go and enjoy.
 
