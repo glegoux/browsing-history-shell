@@ -54,7 +54,7 @@ See  [~/.bash_aliases_bhist](https://github.com/glegoux/browsing-history-shell/b
 
 When you are doing `cd`, if the standard output of `ls` is less than 4 lines, then a `ls` is executed. Pay attention to put a redirection to `/dev/null` if you use `cd` in another context. 
   
-If the current directory contents a foder `:<i>`, then this foldername is in conflict with the command `cd :<i>`. If you use `cd :<i>`, there is a warning in the error output, use `cd ./:<i>` to go to this folder.
+If the current directory includes a folder `:<i>`, then this foldername is in conflict with the command `cd :<i>`. If you use `cd :<i>`, there is a warning in the error output, use `cd ./:<i>` to go to this folder.
 
 If you are browsing in your browsing history, this isn't stored in your browsing history. You can do `cd .` to have the last location a new time in your browsing history.
 
