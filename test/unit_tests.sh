@@ -70,7 +70,7 @@ test_01() {
   __bhist_changedir ../A/1 > /dev/null
   __bhist_changedir ../../B > /dev/null
   __bhist_changedir :2 > /dev/null
-  __bhist_bhistory
+  __bhist_history
 }
 
 
@@ -122,7 +122,7 @@ test_06() {
   ## exit status 0
   ## location /home/user/F F
   __bhist_changedir F\ F > /dev/null
-  __bhist_bhistory
+  __bhist_history
 }
 
 
@@ -142,7 +142,7 @@ test_07() {
   __bhist_changedir ../D > /dev/null
   __bhist_changedir :2 > /dev/null
   __bhist_changedir ../D/:2 > /dev/null
-  __bhist_bhistory
+  __bhist_history
 }
 
 
@@ -158,7 +158,7 @@ test_08() {
   __bhist_changedir ../B > /dev/null
   __bhist_changedir - > /dev/null
   __bhist_changedir - > /dev/null
-  __bhist_bhistory
+  __bhist_history
 }
 
 
@@ -174,7 +174,7 @@ test_09() {
   __bhist_changedir ../B > /dev/null
   __bhist_changedir :0 > /dev/null
   __bhist_changedir B > /dev/null
-  __bhist_bhistory
+  __bhist_history
 }
 
 
@@ -191,7 +191,7 @@ test_10() {
   __bhist_changedir A > /dev/null
   __bhist_changedir ../B > /dev/null
   __bhist_changedir ../C > /dev/null
-  __bhist_bhistory
+  __bhist_history
   __bhist_changedir :4 > /dev/null
 }
 
@@ -212,5 +212,5 @@ test_11() {
   __bhist_changedir ../C > /dev/null
   __bhist_changedir ../D > /dev/null
   __bhist_changedir :-1 > /dev/null
-  __bhist_bhistory
+  __bhist_history
 }
