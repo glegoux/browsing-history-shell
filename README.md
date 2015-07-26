@@ -82,7 +82,7 @@ If you haven't that, you can download bash shell at http://www.gnu.org/software/
 git clone --depth 1 https://github.com/glegoux/browsing-history-shell.git
 ```
 
-There are hidden files, see that with a `ls -a`.
+There are hidden files, see that with `ls -a`.
 
 2) Create symbolic links in going to your local git repository :
 
