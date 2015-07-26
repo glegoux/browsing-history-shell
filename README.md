@@ -7,7 +7,7 @@ See [Installation](https://github.com/glegoux/browsing-history-shell/blob/master
 
 ## Usage
 
-After `cd`, if the content of the new current directory is not too long, show it.
+After `cd [$1]`, if the content of the new current directory is not too long, show it.
 
 The different extra commands are :
 
