@@ -30,9 +30,9 @@ The different extra commands are :
   
 **Files**    
 
+* `~/.bashrc` : bashrc file where this extension is installed. 
 * `~/.bashrc_bhist` : this bashrc extension.
-* `~/.bash_aliases_bhist` : aliases of this bashrc extension.  
-* `~/.bashrc` : bashrc file where this extension is installed.  
+ 
   
 **Environment variables**  
 
@@ -48,7 +48,8 @@ The different extra commands are :
 
 **Aliases**  
 
-See  [~/.bash_aliases_bhist](https://github.com/glegoux/browsing-history-shell/blob/master/.bash_aliases_bhist).  
+* `cd` 
+* `bhistory`
 
 **Notes**  
 
@@ -102,7 +103,6 @@ There are hidden files, see that with `ls -a`.
 
 ```
 ln -s "$PWD"/.bashrc_bhist ~/.bashrc_bhist
-ln -s "$PWD"/.bash_aliases_bhist ~/.bash_aliases_bhist
 ```
 
 3) Insert the following lines into your `~/.bashrc` :
@@ -111,11 +111,6 @@ ln -s "$PWD"/.bash_aliases_bhist ~/.bash_aliases_bhist
 # enable browsing history
 if [ -f ~/.bashrc_bhist ]; then
     . ~/.bashrc_bhist
-fi
-
-# enable browsing history aliases
-if [ -f ~/.bash_aliases_bhist ]; then
-    . ~/.bash_aliases_bhist
 fi
 ```
 
