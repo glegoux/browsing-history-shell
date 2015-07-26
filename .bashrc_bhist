@@ -40,7 +40,7 @@ __bhist_bhistory() {
 
 
 ##
-# Description: 
+# Description:
 #   Trigger action after a cd to complete browsing history 
 #   and show content of a folder (with 'ls'), if it's relevant.
 # Global:
@@ -108,7 +108,9 @@ __bhist_changedir() {
     rep="$1"
   fi
 
-  cd "$rep"
+  # use cd by default as shell builtin
+  # (without using cd as function or alias)
+  command cd "$rep"
 
   if test $? -ne 0; then
     BHIST_CUR_INDEX="$saved_index"
