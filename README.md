@@ -7,6 +7,8 @@ See [Installation](https://github.com/glegoux/browsing-history-shell/blob/master
 
 ## Usage
 
+After `cd`, if the content of the new current directory is not too long, show it.
+
 The different extra commands are :
 
 * `bhistory` : Show the browsing history of the current bash shell.
@@ -54,10 +56,9 @@ And when you make a `cd`, if the standard output of a `ls` is less than 4 lines,
   
 If a foldername is `:<i>`, then this foldername is in conflict with the command `cd :<i>`. If this folder is in the current working directory and you use `cd :<i>`, there is a warning, but `cd ./:<i>` allows to go into this folder.
   
-You can comment or delete the matching lines into `.bashrc_bhist`, to have your wanted behaviour (no warning for instance).
+You can comment or delete the matching lines in `.bashrc_bhist`, in order to have your wanted behaviour (no warning for instance).
 
-Aliases are disabled in shell script by default, you can enable `cd` alias in a shell script with `shopt -s expand_aliases` (see http://www.gnu.org/software/bash/manual/bash.html#The-Shopt-Builtin).
-if you activate this shell option, check that with `shopt`, then `type cd` or `alias cd`.
+Aliases are disabled in shell script by default, you can enable `cd` alias in a shell script with `shopt -s expand_aliases` (see http://www.gnu.org/software/bash/manual/bash.html#The-Shopt-Builtin). If you activate this shell option, check that with `shopt`, then `type cd` or `alias cd`.
 
 ## Coding Style
 
@@ -72,7 +73,7 @@ Launch the script `./run`.
 See [test/](https://github.com/glegoux/browsing-history-shell/blob/master/test/).  
 
 *Note*  
-* Don't use the aliases `cd` or `bhistory` in an unit test because it's a bash function, that is a compound (see http://www.gnu.org/software/bash/manual/bash.html#Aliases).
+* Don't use the aliases `cd` or `bhistory` in an unit test because it's a bash function, that is a compound command (see http://www.gnu.org/software/bash/manual/bash.html#Aliases).
 
 ## Installation
 
