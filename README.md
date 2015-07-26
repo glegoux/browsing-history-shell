@@ -22,9 +22,6 @@ The different extra commands are :
 
 Everybody knows the command `history` to show the command bash history. Why is there not a history for browsing ? Personnaly, when I am on a server with SSH connection, I always forget where I was before, in what working directory. I advise you to put the current working directory on your prompt (for instance `PS1="\u@: \w \\$ "` where `\w` is your current working directory).
 
-This is only for `Bash Shell` (but it's easy to adapt for a Shell Bourne `sh` or others ...).  
-See that with `cat /etc/passwd | grep $USER` or `echo $SHELL` to know that.
-
 ## Synopsis
 
 The goal is to show your browsing history as a browsing web, but in your shell environment. You can easily go to the previous and next working directory and show your browsing history.   
@@ -59,6 +56,8 @@ If a foldername is `:<i>`, then this foldername is in conflict with the command 
   
 You can comment or delete the matching lines into `.bashrc_bhist`, to have your wanted behaviour (no warning for instance).
 
+Aliases are disabled in shell script by default, you can enable `cd` alias in a shell script with `shopt -s expand_aliases` (see http://www.gnu.org/software/bash/manual/bash.html#The-Shopt-Builtin)
+You can check taht with `type cd` or `alias`.
 
 ## Coding Style
 
@@ -70,21 +69,26 @@ Use docker container for interactive and unit tests. Launch the script `./run`. 
 
 ## Installation
 
-Follow the following steps, **[local_git_repository]** is the absolute pathname that you chose to download this git repository.
+This is only for `Bash Shell version 4.3+` (but it's easy to adapt for a `Shell Bourne` or others ...).  
+
+* See your current shell type with `cat /etc/passwd | grep $USER` or `echo $SHELL`.
+* See your current version with `bash --version` .  
+
+If you haven't that, you can download bash shell at http://www.gnu.org/software/bash/.
 
 1) Download this git repository :
 
 ```
-git clone https://github.com/glegoux/browsing-history-shell.git [local_git_repository]
+git clone --depth 1 https://github.com/glegoux/browsing-history-shell.git
 ```
 
 There are hidden files, see that with a `ls -a`.
 
-2) Create symbolic links :
+2) Create symbolic links in going to your local git repository :
 
 ```
-ln -s [local_git_repository].bashrc_bhist ~/.bashrc_bhist
-ln -s [local_git_repository].bash_aliases_bhist ~/.bash_aliases_bhist
+ln -s .bashrc_bhist ~/.bashrc_bhist
+ln -s .bash_aliases_bhist ~/.bash_aliases_bhist
 ```
 
 3) Insert the following lines into your `~/.bashrc` :
