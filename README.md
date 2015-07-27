@@ -59,7 +59,7 @@ If the current directory includes a folder `:<i>`, then this foldername is in co
 
 If you are browsing in your browsing history, this isn't stored in your browsing history. You can do `cd .` to have the last location a new time in your browsing history.
 
-If you make `cd +`, `cd -` or `cd :<i>` out of browsing history range, there is an error.
+If you do `cd +`, `cd -` or `cd :<i>` out of browsing history range, there is an error.
 
 The consecutive location duplicates in the browsing history are deleted automatically.
 
