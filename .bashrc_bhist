@@ -63,10 +63,10 @@ __bhist_changedir() {
   # go to the previous working directory
   if test "$1" = "-"; then
     if test -d '-'; then
-      echo "WARNING: 'cd -', folder '-' exists, go into this with 'cd ./-'."  >&2
+      >&2 echo "WARNING: 'cd -', folder '-' exists, go into this with 'cd ./-'."
     fi
     if test $BHIST_CUR_INDEX -eq 0; then
-      echo "ERROR: 'cd -', impossible out of range browsing history."  >&2
+      >&2 echo "ERROR: 'cd -', impossible out of range browsing history."
       return 1
     fi
     BHIST_CUR_INDEX=$(($BHIST_CUR_INDEX-1))
@@ -76,10 +76,10 @@ __bhist_changedir() {
   # go to the next working directory
   elif test "$1" = "+"; then
     if test -d '+'; then
-      echo "WARNING: 'cd +', folder '+' exists, go into this with 'cd ./+'."  >&2
+      >&2 echo "WARNING: 'cd +', folder '+' exists, go into this with 'cd ./+'."
     fi
     if test $BHIST_CUR_INDEX -eq $(($BHIST_LEN-1)); then
-      echo "ERROR: 'cd +', impossible out of range browsing history."  >&2
+      >&2 echo "ERROR: 'cd +', impossible out of range browsing history."
       return 1
     fi
     BHIST_CUR_INDEX=$(($BHIST_CUR_INDEX+1))
@@ -90,10 +90,10 @@ __bhist_changedir() {
   elif [[ "$1" =~ ^:[0-9]+$ ]]; then
     i=$(echo "$1" | sed 's/^://')
     if test -d ":$i"; then
-      echo "WARNING: 'cd :$i', folder ':$i' exists, go into this with 'cd ./:$i'." >&2
+      >&2 echo "WARNING: 'cd :$i', folder ':$i' exists, go into this with 'cd ./:$i'."
     fi
     if test $i -lt 0 -o $i -ge $BHIST_LEN; then
-      echo "ERROR: 'cd :$i', impossible out of range browsing history." >&2
+      >&2 echo "ERROR: 'cd :$i', impossible out of range browsing history."
       return 1
     fi
     rep="${BHIST_DIRS[$i]}"
