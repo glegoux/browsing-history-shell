@@ -96,7 +96,7 @@ execute_docker_command() {
   if [[ "${user}" == "root" ]]; then
     docker exec "${cuuid}" ${cmd} || return $?
   else
-    docker exec -u "$user" "${cuuid}" ${cmd} || return $?
+    docker exec -u "${user}" "${cuuid}" ${cmd} || return $?
   fi
   return 0
 
@@ -115,7 +115,7 @@ connect_docker_container() {
   if [[ "${user}" == "root" ]]; then
     docker exec -it "${cuuid}" /bin/bash || return $?
   else
-    docker exec -it -u "${TEST_USER}" "${cuuid}" /bin/bash -c "cd; /bin/bash" \
+    docker exec -it -u "${user}" "${cuuid}" /bin/bash -c "cd; /bin/bash" \
       || return $?
   fi
   return 0
