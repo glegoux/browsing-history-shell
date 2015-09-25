@@ -100,11 +100,10 @@ git clone --depth 1 https://github.com/glegoux/browsing-history-shell.git
 There are hidden files, see that with `ls -a`. Or just the script :
 
 ```
-cd ~
-wget https://raw.githubusercontent.com/glegoux/browsing-history-shell/master/.bashrc_bhist
+cd ~ && wget https://raw.githubusercontent.com/glegoux/browsing-history-shell/master/.bashrc_bhist
 ```
 
-2) Create symbolic links in going to your local git repository :
+2) Only if you have chosen to download this git repository, create symbolic links in going to your local git repository :
 
 ```
 ln -s "$PWD"/.bashrc_bhist ~/.bashrc_bhist
