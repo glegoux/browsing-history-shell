@@ -109,7 +109,7 @@ __bhist_changedir() {
   fi
 
   # use cd by default as shell builtin
-  # (without using cd as function or alias)
+  # (without using cd as function or alias, \cd was also possible)
   command cd "$rep"
 
   if test $? -ne 0; then
