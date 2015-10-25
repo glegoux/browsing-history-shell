@@ -2,8 +2,8 @@
 
 ![alt text][demo]
 
-It's very useful, it becomes quickly essential and it takes less than one minute to install.  
-See [Installation](https://github.com/glegoux/browsing-history-shell/blob/master/README.md#installation) !
+It's very useful, it becomes quickly essential and it takes less than one minute to install.
+See [Installation](https://github.com/glegoux/browsing-history-shell/blob/master/README.md#installation).
 
 Else you can try with Docker Hub, go to https://hub.docker.com/r/glegoux/bhist/.
 
