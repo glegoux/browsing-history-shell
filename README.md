@@ -5,6 +5,8 @@
 It's very useful, it becomes quickly essential and it takes less than one minute to install.  
 See [Installation](https://github.com/glegoux/browsing-history-shell/blob/master/README.md#installation) !
 
+Else you can try with Docker Hub, go to https://hub.docker.com/r/glegoux/bhist/.
+
 ## Installation
 
 This is only for `Bash Shell version 4.3+` (but it's easy to adapt for a `Shell Bourne` or others ...).  
