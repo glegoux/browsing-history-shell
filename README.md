@@ -117,10 +117,7 @@ Try to use https://google-styleguide.googlecode.com/svn/trunk/shell.xml.
 
 ## Tests
 
-Use docker container for interactive and unit tests.   
-
-Launch the script `./run`.   
-
+Use docker container for interactive and unit tests. Launch the script `./run`.
 See [test/](https://github.com/glegoux/browsing-history-shell/blob/master/test/).  
 
 *Note*  
