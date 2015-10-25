@@ -5,6 +5,50 @@
 It's very useful, it becomes quickly essential and it takes less than one minute to install.  
 See [Installation](https://github.com/glegoux/browsing-history-shell/blob/master/README.md#installation) !
 
+## Installation
+
+This is only for `Bash Shell version 4.3+` (but it's easy to adapt for a `Shell Bourne` or others ...).  
+
+* See your current shell type with `cat /etc/passwd | grep $USER` or `echo $SHELL`.
+* See your current version with `bash --version` .  
+
+If you haven't that, you can download bash shell at http://www.gnu.org/software/bash/.
+
+1) Download this git repository :
+
+```
+git clone --depth 1 https://github.com/glegoux/browsing-history-shell.git
+```
+
+There are hidden files, see that with `ls -a`. Or just the script :
+
+```
+cd ~ && wget https://raw.githubusercontent.com/glegoux/browsing-history-shell/master/.bashrc_bhist
+```
+
+2) Only if you have chosen to download this git repository, create symbolic links in going to your local git repository :
+
+```
+ln -s "$PWD"/.bashrc_bhist ~/.bashrc_bhist
+```
+
+3) Insert the following lines into your `~/.bashrc` :
+
+```bash
+# enable browsing history
+if [ -f ~/.bashrc_bhist ]; then
+    . ~/.bashrc_bhist
+fi
+```
+
+4) You can update your script with an `git pull`.
+
+Of course, you also can just copy the content of each file wihout creating symbolic links, but the automatic updating will be more complicated than `git pull`. 
+
+Let's go and enjoy.
+
+Best Regards, don't hesitate to write me, to fix bugs, or improve behaviours.
+
 ## Usage
 
 After `cd [$1]`, if the content of the new current directory is not too long, show it.
@@ -81,50 +125,6 @@ See [test/](https://github.com/glegoux/browsing-history-shell/blob/master/test/)
 
 *Note*  
 * To be safe, don't use the aliases `cd` or `bhistory` in an unit test because it's a bash function, that is a compound command (see http://www.gnu.org/software/bash/manual/bash.html#Aliases).
-
-## Installation
-
-This is only for `Bash Shell version 4.3+` (but it's easy to adapt for a `Shell Bourne` or others ...).  
-
-* See your current shell type with `cat /etc/passwd | grep $USER` or `echo $SHELL`.
-* See your current version with `bash --version` .  
-
-If you haven't that, you can download bash shell at http://www.gnu.org/software/bash/.
-
-1) Download this git repository :
-
-```
-git clone --depth 1 https://github.com/glegoux/browsing-history-shell.git
-```
-
-There are hidden files, see that with `ls -a`. Or just the script :
-
-```
-cd ~ && wget https://raw.githubusercontent.com/glegoux/browsing-history-shell/master/.bashrc_bhist
-```
-
-2) Only if you have chosen to download this git repository, create symbolic links in going to your local git repository :
-
-```
-ln -s "$PWD"/.bashrc_bhist ~/.bashrc_bhist
-```
-
-3) Insert the following lines into your `~/.bashrc` :
-
-```bash
-# enable browsing history
-if [ -f ~/.bashrc_bhist ]; then
-    . ~/.bashrc_bhist
-fi
-```
-
-4) You can update your script with an `git pull`.
-
-Of course, you also can just copy the content of each file wihout creating symbolic links, but the automatic updating will be more complicated than `git pull`. 
-
-Let's go and enjoy.
-
-Best Regards, don't hesitate to write me, to fix bugs, or improve behaviours.
 
 ## License 
 
