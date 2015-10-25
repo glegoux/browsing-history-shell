@@ -117,8 +117,12 @@ Try to use https://google-styleguide.googlecode.com/svn/trunk/shell.xml.
 
 ## Tests
 
+There is a library to do unit test in bash.  
+
 Use docker container for interactive and unit tests. Launch the script `./run`.
 See [test/](https://github.com/glegoux/browsing-history-shell/blob/master/test/).  
+
+11/11, 100%, All unit tests OK.
 
 *Note*  
 * To be safe, don't use the aliases `cd` or `bhistory` in an unit test because it's a bash function, that is a compound command (see http://www.gnu.org/software/bash/manual/bash.html#Aliases).
