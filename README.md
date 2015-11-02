@@ -22,13 +22,13 @@ If you haven't that, you can download bash shell at http://www.gnu.org/software/
 git clone --depth 1 https://github.com/glegoux/browsing-history-shell.git
 ```
 
-There are hidden files, see that with `ls -a`. Or just the script :
+There are hidden files, see that with `ls -a`. Or download just the script :
 
 ```
 cd ~ && wget https://raw.githubusercontent.com/glegoux/browsing-history-shell/master/.bashrc_bhist
 ```
 
-2) Only if you have chosen to download this git repository, create symbolic links in going to your local git repository :
+2) Only if you chose to download this git repository, create symbolic links  :
 
 ```
 ln -s "$PWD"/.bashrc_bhist ~/.bashrc_bhist
@@ -45,7 +45,7 @@ fi
 
 4) You can update your script with an `git pull`.
 
-Of course, you also can just copy the content of each file wihout creating symbolic links, but the automatic updating will be more complicated than `git pull`. 
+Of course, you also can just copy the content of each file without creating symbolic links, but the automatic updating will be more complicated than `git pull`. 
 
 Let's go and enjoy.
 
@@ -68,7 +68,7 @@ The different extra commands are :
 
 ## Motivation
 
-  Everybody knows the command `history` to show the command bash history. Why is there not a history for browsing ? Personnaly, when I am on a server with SSH connection, I always forget where I was before, in what working directory. I advise you to put the current working directory on your prompt (for instance `PS1="\u@: \w \\$ "` where `\w` is your current working directory).
+  Everybody knows the command `history` to show the command bash history. Why is there not history for browsing ? Personnaly, when I am on a server with SSH connection, I always forget where I was before, in what working directory. I advise you to put the current working directory on your prompt (for instance `PS1="\u@: \w \\$ "` where `\w` is your current working directory).
 
 ## Synopsis
 
