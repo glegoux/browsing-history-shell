@@ -43,7 +43,7 @@ if [ -f ~/.bashrc_bhist ]; then
 fi
 ```
 
-4) You can update your script with an `git pull`.
+4) You can update your script with `git pull`.
 
 Of course, you also can just copy the content of each file without creating symbolic links, but the automatic updating will be more complicated than `git pull`. 
 
