@@ -133,5 +133,5 @@ See [test/](https://github.com/glegoux/browsing-history-shell/blob/master/test/)
 
 Released under the MIT License, see [LICENSE](https://github.com/glegoux/browsing-history-shell/blob/master/LICENSE/).
 
-[demo]: https://github.com/glegoux/browsing-history-shell/blob/master/media/demo.gif "demo"
+[demo]: https://github.com/glegoux/browsing-history-shell/blob/master/demo.gif "demo"
 
