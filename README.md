@@ -68,7 +68,7 @@ The different extra commands are :
 
 ## Motivation
 
-  Everybody knows the command `history` to show the command bash history. Why is there not history for browsing ? Personnaly, when I am on a server with SSH connection, I always forget where I was before, in what working directory. I advise you to put the current working directory on your prompt (for instance `PS1="\u@: \w \\$ "` where `\w` is your current working directory).
+  Everybody knows `history` command to show bash command history. Why is there not history for browsing ? Personally, when I am on a server with SSH connection, I always forget where I was before, in what working directory. Also I advise you to put the current working directory on your prompt (for instance `PS1="\u@: \w \\$ "` where `\w` is your current working directory) and to install this library.
 
 ## Synopsis
 
