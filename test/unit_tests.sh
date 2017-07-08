@@ -15,7 +15,7 @@ die() {
 
 init_test_suite() {
 
-  # Check and build unit test environment
+  # Check environment variables
   [[ -n $BHIST_USER ]] || die "environment variable BHIST_USER is not defined"
   [[ "$(id -un)" == "$BHIST_USER" ]] || die "current user should be '$BHIST_USER'"
   
