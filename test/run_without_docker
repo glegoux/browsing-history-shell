@@ -8,6 +8,8 @@
 # directly as root on your computer.
 # (it is better).
 
+cd "$(dirname "$0")"
+
 # Build environment
 export BHIST_USER="bhist_test"
 export BHIST_HOME="/home/$BHIST_USER"
@@ -20,6 +22,10 @@ die() {
 
 sudo adduser --disabled-password --gecos "" "$BHIST_USER" \
   || die "impossible to create '$BHIST_USER' user"
+  
+sudo cp -v ../bashrc_bhist "$BHIST_HOME"
+sudo cp -v ./test_suite "$BHIST_HOME"
+sudo cp -v ./unit_tests "$BHIST_HOME"
   
 su --login "$BHIST_USER" --shell /bin/bash -c './test_suite unit_tests.sh' \
   || die "impossible to launch unit tests as '$BHIST_USER' user"
