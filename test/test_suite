@@ -66,7 +66,7 @@ fi
 
 # Global variables
 
-declare -r UNIT_TEST_PATHNAME="$1"
+declare -r UNIT_TEST_PATHNAME="$(realpath "$1")"
 declare -ar FUNCTIONS=(init_test_suite clean_test_suite init_test clean_test)
 
 
