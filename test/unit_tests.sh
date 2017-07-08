@@ -5,12 +5,12 @@
 # Require:
 #
 #  environment variables:
-#    BHIST_USER=user
-#    BHIST_HOME=/home/user
+#    BHIST_USER=bhist_test
+#    BHIST_HOME=/home/bhist_test
 #    BHIST_FILENAME=<bhist_filename>
 #  
-#  user/group: user/user
-#  location: /home/buser
+#  user/group: bhist_test/bhist_test
+#  location: /home/bhist_test
 
 
 # Helper
@@ -75,13 +75,13 @@ clean_test() {
 
 test_01() {
   ## stdout
-  #  0 /home/user
-  #  1 /home/user/A
-  # *2 /home/user/A/1
-  #  3 /home/user/B
+  #  0 /home/bhist_test
+  #  1 /home/bhist_test/A
+  # *2 /home/bhist_test/A/1
+  #  3 /home/bhist_test/B
   ## stderr
   ## exit status 0
-  ## location /home/user/A/1
+  ## location /home/bhist_test/A/1
   __bhist_changedir A > /dev/null
   __bhist_changedir ../A/1 > /dev/null
   __bhist_changedir ../../B > /dev/null
@@ -95,7 +95,7 @@ test_02() {
   ## stderr
   # ERROR: 'cd +', impossible out of range browsing history.
   ## exit status 1
-  ## location /home/user
+  ## location /home/bhist_test
   __bhist_changedir +
 }
 
@@ -105,7 +105,7 @@ test_03() {
   ## stderr
   # ERROR: 'cd -', impossible out of range browsing history.
   ## exit status 1
-  ## location /home/user
+  ## location /home/bhist_test
   __bhist_changedir -
 }
 
@@ -115,7 +115,7 @@ test_04() {
   ## stderr
   # bash: cd: aaa: No such file or directory
   ## exit status 1
-  ## location /home/user
+  ## location /home/bhist_test
   __bhist_changedir aaa
 }
 
@@ -125,18 +125,18 @@ test_05() {
   ## stderr
   # bash: cd: E: Permission denied
   ## exit status 1
-  ## location /home/user
+  ## location /home/bhist_tes
   __bhist_changedir E
 }
 
 
 test_06() {
   ## stdout
-  #  0 /home/user
-  # *1 /home/user/F F
+  #  0 /home/bhist_test
+  # *1 /home/bhist_test/F F
   ## stderr
   ## exit status 0
-  ## location /home/user/F F
+  ## location /home/bhist_test/F F
   __bhist_changedir F\ F > /dev/null
   __bhist_history
 }
@@ -144,15 +144,15 @@ test_06() {
 
 test_07() {
   ## stdout
-  #  0 /home/user
-  #  1 /home/user/A
-  #  2 /home/user/B
-  #  3 /home/user/D
-  # *4 /home/user/D/:2
+  #  0 /home/bhist_test
+  #  1 /home/bhist_test/A
+  #  2 /home/bhist_test/B
+  #  3 /home/bhist_test/D
+  # *4 /home/bhist_test/D/:2
   ## stderr
   # WARNING: 'cd :2', folder ':2' exists, go into this with 'cd ./:2'.
   ## exit status 0
-  ## location /home/user/D/:2
+  ## location /home/bhist_test/D/:2
   __bhist_changedir A > /dev/null
   __bhist_changedir ../B > /dev/null
   __bhist_changedir ../D > /dev/null
@@ -164,12 +164,12 @@ test_07() {
 
 test_08() {
   ## stdout
-  # *0 /home/user
-  #  1 /home/user/A
-  #  2 /home/user/B
+  # *0 /home/bhist_test
+  #  1 /home/bhist_test/A
+  #  2 /home/bhist_test/B
   ## stderr
   ## exit status 0
-  ## location /home/user
+  ## location /home/bhist_test
   __bhist_changedir A > /dev/null
   __bhist_changedir ../B > /dev/null
   __bhist_changedir - > /dev/null
@@ -180,12 +180,12 @@ test_08() {
 
 test_09() {
   ## stdout
-  #  0 /home/user
-  #  1 /home/user/A
-  # *2 /home/user/B
+  #  0 /home/bhist_test
+  #  1 /home/bhist_test/A
+  # *2 /home/bhist_test/B
   ## stderr
   ## exit status 0
-  ## location /home/user/B
+  ## location /home/bhist_test/B
   __bhist_changedir A > /dev/null
   __bhist_changedir ../B > /dev/null
   __bhist_changedir :0 > /dev/null
@@ -196,14 +196,14 @@ test_09() {
 
 test_10() {
   ## stdout
-  #  0 /home/user
-  #  1 /home/user/A
-  #  2 /home/user/B
-  # *3 /home/user/C
+  #  0 /home/bhist_test
+  #  1 /home/bhist_test/A
+  #  2 /home/bhist_test/B
+  # *3 /home/bhist_test/C
   ## stderr
   # ERROR: 'cd :4', impossible out of range browsing history.
   ## exit status 1
-  ## location /home/user/C
+  ## location /home/bhist_test/C
   __bhist_changedir A > /dev/null
   __bhist_changedir ../B > /dev/null
   __bhist_changedir ../C > /dev/null
@@ -214,15 +214,15 @@ test_10() {
 
 test_11() {
   ## stdout
-  #  0 /home/user
-  #  1 /home/user/A
-  #  2 /home/user/B
-  #  3 /home/user/C
-  #  4 /home/user/D
-  # *5 /home/user/D/:-1
+  #  0 /home/bhist_test
+  #  1 /home/bhist_test/A
+  #  2 /home/bhist_test/B
+  #  3 /home/bhist_test/C
+  #  4 /home/bhist_test/D
+  # *5 /home/bhist_test/D/:-1
   ## stderr
   ## exit status 0
-  ## location /home/user/D/:-1
+  ## location /home/bhist_test/D/:-1
   __bhist_changedir A > /dev/null
   __bhist_changedir ../B > /dev/null
   __bhist_changedir ../C > /dev/null

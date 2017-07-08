@@ -5,20 +5,24 @@
 # Run as root user unit tests for bhist library.
 #
 # We use container docker instead of running this script
-# directly as root on your computer.
-# (it is better).
+# directly as root on your computer (it is better).
 
 cd "$(dirname "$0")"
 
-# Build environment
-export BHIST_USER="bhist_test"
-export BHIST_HOME="/home/$BHIST_USER"
-export BHIST_FILENAME="$BHIST_HOME/.bashrc_bhist"
+# Helper
 
 die() {
   >&2 echo "ERROR: $1 !"
   exit 1
 }
+
+# Run test as "$BHIST_USER"
+
+export BHIST_USER="bhist_test"
+export BHIST_HOME="/home/$BHIST_USER"
+export BHIST_FILENAME="$BHIST_HOME/.bashrc_bhist"
+
+trap "sudo deluser --remove-home '$BHIST_USER'" EXIT
 
 sudo adduser --disabled-password --gecos "" "$BHIST_USER" \
   || die "impossible to create '$BHIST_USER' user"
@@ -27,10 +31,10 @@ sudo cp -v ../.bashrc_bhist "$BHIST_HOME"
 sudo cp -v ./test_suite "$BHIST_HOME"
 sudo cp -v ./unit_tests.sh "$BHIST_HOME"
 
-sudo chown -R "$BHIST_USER:$BHIST_USER" "$BHIST_HOME"
-  
-sudo BHIST_USER=$BHIST_USER BHIST_HOME=$BHIST_HOME BHIST_FILENAME=BHIST_FILENAME \
-  su --login "$BHIST_USER" --shell /bin/bash -c './test_suite unit_tests.sh' \
-  || die "impossible to launch unit tests as '$BHIST_USER' user"
-  
-sudo deluser --remove-home "$BHIST_USER"
+sudo chown -vR "$BHIST_USER:$BHIST_USER" "$BHIST_HOME"
+
+sudo BHIST_USER="$BHIST_USER" \
+     BHIST_HOME="$BHIST_HOME" \
+     BHIST_FILENAME="$BHIST_FILENAME" \
+  su "$BHIST_USER" --shell /bin/bash -c './test_suite unit_tests.sh'
+
