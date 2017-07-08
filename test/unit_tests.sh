@@ -27,11 +27,11 @@ init_test_suite() {
   [[ -f $bhist_file ]] || die "'$bhist_file' is not exist or is not a file"
   
   # Init environment
-  cd "$BHIST_HOME"
+  cd "$BHIST_HOME" || die "impossible to go to '$BHIST_HOME'"
   echo "go to $PWD"
 
-  mkdir -vp {A,B,C}/{1,2,3} D/{:2,+,-,:-1} E/ "F F/"
-  chmod -v 000 E
+  mkdir -vp {A,B,C}/{1,2,3} D/{:2,+,-,:-1} E/ "F F/" || die "impossible to create filesystem environment"
+  chmod -v 000 E || die "impossible to change permissions for 'E' folder"
 
   # Enable browsing history
   source "$bhist_file" || die "impossible to import '$bhist_file' in bash environment"
@@ -46,7 +46,7 @@ clean_test_suite() {
 
 init_test() {
 
-  cd "$BHIST_HOME"
+  cd "$BHIST_HOME" || die "impossible to go to '$BHIST_HOME'"
   echo "go to $PWD"
   BHIST_DIRS=([0]="$PWD")
   BHIST_CUR_INDEX=0
