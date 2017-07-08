@@ -4,7 +4,7 @@
 #
 # Run as root user unit tests for bhist library.
 #
-# We use container docker instead of running this script
+# You can use container docker instead of running this script
 # directly as root on your computer (it is better).
 
 cd "$(dirname "$0")"
