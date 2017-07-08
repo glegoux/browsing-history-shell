@@ -33,7 +33,7 @@ init_test_suite() {
   [[ -f $bhist_file ]] || die "'$bhist_file' does not exist or is not a file"
   
   # Init environment
-  cd "$BHIST_HOME" || die "impossible to go to '$BHIST_HOME'"
+  cd "$HOME" || die "impossible to go to '$HOME'"
   echo "go to $PWD"
 
   mkdir -vp {A,B,C}/{1,2,3} D/{:2,+,-,:-1} E/ "F F/" || die "impossible to create filesystem environment"
