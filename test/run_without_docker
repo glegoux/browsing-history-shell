@@ -23,7 +23,7 @@ die() {
 sudo adduser --disabled-password --gecos "" "$BHIST_USER" \
   || die "impossible to create '$BHIST_USER' user"
   
-sudo cp -v ../bashrc_bhist "$BHIST_HOME"
+sudo cp -v ../.bashrc_bhist "$BHIST_HOME"
 sudo cp -v ./test_suite "$BHIST_HOME"
 sudo cp -v ./unit_tests "$BHIST_HOME"
 
