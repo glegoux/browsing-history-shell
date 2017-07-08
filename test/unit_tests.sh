@@ -9,7 +9,7 @@
 # environment variables:
 #   USER=user
 #   HOME=/home/user
-#   BHIST_FILENAME=<bhist_filename> (should be absolute path!)
+#   BHIST_FILENAME=<bhist_filename>
 
 # Helper
 
@@ -29,6 +29,7 @@ init_test_suite() {
   [[ "$HOME" == '/home/user' ]] || die "$HOME should be /home/user"
   
   [[ -n $BHIST_FILENAME ]] || die "environment variable BHIST_FILENAME is not defined"
+  BHIST_FILENAME="$(realpath "$BHIST_FILENAME")"
   [[ -f $BHIST_FILENAME ]] || die "'$BHIST_FILENAME' does not exist or is not a file"
   
   # Init environment
