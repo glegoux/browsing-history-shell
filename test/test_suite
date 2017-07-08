@@ -37,9 +37,9 @@ unittest_file:
         ## exit status <exit_status>
         ## location <location>
         <your test>
-       }                 
-                 
-EOF                        
+       }                                 
+EOF  
+
 }
 
 
