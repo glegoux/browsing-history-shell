@@ -1,7 +1,15 @@
 # unit_tests.sh
 #
-# Provide a set of unit tests and define functions to use the script ./test_suite.
-
+# Provide a set of unit tests from test_suite script.
+#
+# Require:
+#
+# current directory: /home/user
+# user/group: user/user
+# environment variables:
+#   USER=user
+#   HOME=/home/user
+#   BHIST_FILENAME=<bhist_filename>
 
 # Helper
 
@@ -15,12 +23,10 @@ die() {
 
 init_test_suite() {
 
-  # Check environment variables
-  [[ -n $BHIST_USER ]] || die "environment variable BHIST_USER is not defined"
-  [[ "$(id -un)" == "$BHIST_USER" ]] || die "current user should be '$BHIST_USER'"
-  
-  [[ -n $BHIST_HOME ]] || die "environment variable BHIST_HOME is not defined"
-  [[ -d "$BHIST_HOME" ]] || die "'$BHIST_HOME' does not exist or is not a folder"
+  # Check environment
+  [[ "$USER" == "user" ]] || die "current user should be user"
+  [[ -d "$HOME" ]] || die "/home/user does not exist or is not a folder"
+  [[ "$HOME" == '/home/user' ]] || die "$HOME should be /home/user"
   
   [[ -n $BHIST_FILENAME ]] || die "environment variable BHIST_FILENAME is not defined"
   local bhist_file="$BHIST_HOME/$BHIST_FILENAME"
@@ -31,7 +37,7 @@ init_test_suite() {
   echo "go to $PWD"
 
   mkdir -vp {A,B,C}/{1,2,3} D/{:2,+,-,:-1} E/ "F F/" || die "impossible to create filesystem environment"
-  chmod -v 000 E || die "impossible to change permissions for 'E' folder"
+  chmod -v -x E || die "impossible to change permissions for 'E' folder"
 
   # Enable browsing history
   source "$bhist_file" || die "impossible to import '$bhist_file' in bash environment"
@@ -40,13 +46,13 @@ init_test_suite() {
 
 clean_test_suite() {
 
-  rm -rfv ~/{A,B,C,D,E,"F F"}
+  rm -rfv "$HOME"/{A,B,C,D,E,"F F"}
 
 }
 
 init_test() {
 
-  cd "$BHIST_HOME" || die "impossible to go to '$BHIST_HOME'"
+  cd "$HOME" || die "impossible to go to '$HOME'"
   echo "go to $PWD"
   BHIST_DIRS=([0]="$PWD")
   BHIST_CUR_INDEX=0
