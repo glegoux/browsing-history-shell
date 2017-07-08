@@ -9,25 +9,25 @@
 
 usage() {
 cat << EOF
-usage: $(basename "$0") unitest_file
+usage: $(basename "$0") unittest_file
 
 Run test suite for a set of unit tests.
 
-Each test is runned in the order where you defined it in the file.
+Each unit test is runned in the order where you defined it in the file.
 
-unitest_file:
+unittest_file:
 
     file where you defined your set of unit tests in respecting
     the appropriate format: 
                  
     Implementation of following abstract functions at beginning of file:
 
-      - init_test_suite: executed before the executution of set of unit tests.
-      - clean_test_suite: executed after the executution of set of unit tests.
-      - init_test: executed after the executution of set of unit tests.
-      - clean_test: executed after the executution of set of unit tests.
+      - init_test_suite: executed before the execution of set of unit tests.
+      - clean_test_suite: executed after the execution of set of unit tests.
+      - init_test: executed after the execution of set of unit tests.
+      - clean_test: executed after the execution of set of unit tests.
 
-    A set of unit tests where wach test should have this format:
+    A set of unit tests where each test should have this format:
   
       test_<name> { 
         ## stdout
