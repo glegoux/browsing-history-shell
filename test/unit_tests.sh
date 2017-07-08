@@ -25,7 +25,7 @@ init_test_suite() {
   export BHIST_FILENAME="$BHIST_HOME/.bashrc_bhist"
   
   sudo adduser --disabled-password --gecos "" "$BHIST_USER" || die "impossible to create '$BHIST_USER' user"
-  su - "BHIST_USER" || die "impossible to switch to user '$BHIST_USER'"
+  su - "$BHIST_USER" || die "impossible to switch to user '$BHIST_USER'"
   BHIST_FILENAME="$HOME/.bashrc_bhist"
   wget "https://raw.githubusercontent.com/glegoux/browsing-history-shell/master/.bashrc_bhist" \
     -o "$BHIST_FILENAME" || die "impossible to download bhist library"
