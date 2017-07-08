@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 #
-# ./test_suite
+# test_suite
 #
 # Run test suite for a set of unit tests.
 
 
-# Usage and script arguments
+# Usage
 
 usage() {
 
@@ -44,98 +44,97 @@ EOF
 
 }
 
-
-if [[ $# -ne 1 ]]; then
-  echo "ERROR: '$(basename "$0")', require one argument !"
-  exit 1
-else
-  case "$1" in
-    "-h"|"--help")
-      usage
-      exit 0
-      ;;
-    *)
-      if [[ ! -f "$1" ]]; then
-        echo "ERROR: '$(basename "$0")', incorrect argument '$1' !"
-        exit 1
-      fi
-      ;;
-  esac
-fi
-
-
 # Global variables
 
 declare -r UNIT_TEST_PATHNAME="$(realpath "$1")"
 declare -ar FUNCTIONS=(init_test_suite clean_test_suite init_test clean_test)
 
 
-# Helper test suite
+# Helper
 
 die() {
+
   >&2 echo "ERROR: $1 !"
   exit 1
+
 }
 
 
 check_functions() {
+
   for f in ${FUNCTIONS[*]}; do
     declare -F "$f" > /dev/null || die "'$0', no implementation in $UNIT_TEST_PATHNAME for $f"
   done
+
 }
 
 
 get_comments() {
+
   local res=$(cat "${UNIT_TEST_PATHNAME}" | sed -n "/^$1() {$/,/^}$/p" | grep '#' | sed "s/^[ ]*//")
   if [[ -z "$res" ]]; then
     return 1
   fi
   echo "$res"
   return 0
+
 }
 
 
 get_content() {
+
   local pattern="$1"
   echo "$2" | grep -q "$pattern" || return 1
   echo "$2" | sed -n "/$pattern/,/##/p" | sed 1d | sed '$d' | sed 's/^# //'
   return 0
+
 }
 
 
 get_line() {
+
   local pattern="$1"
   echo "$2" | grep -q "$pattern" || return 1
   echo "$2" | grep "$pattern" | sed "s/$pattern//"
   return 0
+
 }
 
 
 get_stdout() {
+
   get_content "^## stdout" "$1"
   return $?
+
 }
 
 
 get_stderr() {
+
   get_content "^## stderr" "$1"
   return $?
+
 }
 
 
 get_exit_status() {
+
   get_line "^## exit status " "$1"
   return $?
+
 }
 
 
 get_location() {
+
   get_line "^## location " "$1"
   return $?
+
 }
 
 
 close_test_suite() {
+
   local is_ko="${1-false}"
   echo "Cleaning test suite ..."
   clean_test_suite
@@ -145,10 +144,12 @@ close_test_suite() {
   else
     echo "--> All unit tests OK."
   fi
+
 }
 
 
 close_test() {
+
   echo
   local unit_test="$1"
   local is_ko="${2-false}"
@@ -156,101 +157,131 @@ close_test() {
   clean_test "$unit_test"
   echo
   close_test_suite "$is_ko"
+
+}
+
+
+main() {
+
+  source "$UNIT_TEST_PATHNAME" \
+    || die "impossible to import '$UNIT_TEST_PATHNAME' in bash environment"
+
+  check_functions
+
+  unit_tests=$(typeset -F | sed "s/declare -f //" | grep ^test_)
+
+  [[ -z "${unit_tests}" ]] && die "no one unit test"
+
+  echo -e "\nInitialize test suite ..."
+  init_test_suite
+  echo -e "... end\n"
+
+  for unit_test in ${unit_tests}; do
+
+    trap '[ $? -eq 0 ] || close_test "${unit_test}" true' EXIT
+
+    echo "Initialize unit test: ${unit_test} ..."
+    init_test "${unit_test}"
+    echo
+
+    echo "Run unit test: ${unit_test} ..."
+    stdout=$(tempfile -p "bhist" -s "_${unit_test}.stdout")
+    stderr=$(tempfile -p "bhist" -s "_${unit_test}.stderr")
+    "${unit_test}" > "${stdout}" 2> "${stderr}"
+    exit_status=$?
+    location="${PWD}"
+
+    comments=$(get_comments "${unit_test}")
+    if [[ $? -ne 0 ]]; then
+      die "no comment found !"
+    fi
+
+    expected_stderr=$(get_stderr "${comments}")
+    if [[ $? -eq 0 ]]; then
+      echo "--STDERR:"
+      echo "- given stderr:"
+      stderr=$(cat "${stderr}" | sed 's/^.*line [0-9]*: /bash: /')
+      [[ -n "${stderr}" ]] && echo "${stderr}"
+      echo "- expected stderr:"
+      [[ -n "${expected_stderr}" ]] && echo "${expected_stderr}"
+      if [[ "$(echo "${expected_stderr}")" == "$(echo "${stderr}")" ]]; then
+        echo "--> stderr OK"
+      else
+        die "--> stderr KO"
+      fi
+    fi
+
+    expected_stdout=$(get_stdout "${comments}")
+    if [[ $? -eq 0 ]]; then
+      echo "--STDOUT:"
+      echo "- given stdout:"
+      cat "$stdout"
+      echo "- expected stdout:"
+      [[ -n "${expected_stdout}" ]] && echo "${expected_stdout}"
+      if [[ "$(echo -n "${expected_stdout}")" == "$(cat "${stdout}")" ]]; then
+        echo "--> stdout OK"
+      else
+        die "--> stdout KO"
+      fi
+    fi
+
+    expected_exit_status=$(get_exit_status "${comments}")
+    if [[ $? -eq 0 ]]; then
+      echo "--EXIT STATUS:"
+      echo "- given exit status: ${exit_status}"
+      echo "- expected exit status: ${expected_exit_status}"
+      if [[ "${expected_exit_status}" == "${exit_status}" ]]; then
+        echo "--> exit status OK"
+      else
+        die "--> exit status KO"
+      fi
+    fi
+
+    expected_location=$(get_location "${comments}")
+    if [[ $? -eq 0 ]]; then
+      echo "--LOCATION:"
+      echo "- given location: ${location}"
+      echo "- expected location: ${expected_location}"
+      if [[ "${expected_location}" == "${location}" ]]; then
+        echo "--> location OK"
+      else
+        die "--> location KO"
+      fi
+    fi
+
+    clean_test "${unit_test}"
+
+  done
+
+  echo -e "\nClose test suite ..."
+  close_test_suite
+  echo -e "... end\n"
+
 }
 
 # Run unit tests
 
-source "$UNIT_TEST_PATHNAME" \
-  || die "impossible to import '$UNIT_TEST_PATHNAME' in bash environment"
+if [[ "${FUNCNAME[0]}" == "main" ]]; then
 
-check_functions
-
-unit_tests=$(typeset -F | sed "s/declare -f //" | grep ^test_)
-
-[[ -z "${unit_tests}" ]] && die "no one unit test"
-
-echo -e "\nInitialize test suite ..."
-init_test_suite
-echo -e "... end\n"
-
-for unit_test in ${unit_tests}; do
-
-  trap '[ $? -eq 0 ] || close_test "${unit_test}" true' EXIT
-
-  echo "Initialize unit test: ${unit_test} ..."
-  init_test "${unit_test}"
-  echo
-
-  echo "Run unit test: ${unit_test} ..."
-  stdout=$(tempfile -p "bhist" -s "_${unit_test}.stdout")
-  stderr=$(tempfile -p "bhist" -s "_${unit_test}.stderr")
-  "${unit_test}" > "${stdout}" 2> "${stderr}"
-  exit_status=$?
-  location="${PWD}"
-
-  comments=$(get_comments "${unit_test}")
-  if [[ $? -ne 0 ]]; then
-    die "no comment found !"
+  # Script arguments
+  if [[ $# -ne 1 ]]; then
+    echo "ERROR: '$(basename "$0")', require one argument !"
+    exit 1
+  else
+    case "$1" in
+      "-h"|"--help")
+        usage
+        exit 0
+        ;;
+      *)
+        if [[ ! -f "$1" ]]; then
+          echo "ERROR: '$(basename "$0")', incorrect argument '$1' !"
+          exit 1
+        fi
+        ;;
+    esac
   fi
 
-  expected_stderr=$(get_stderr "${comments}")
-  if [[ $? -eq 0 ]]; then
-    echo "--STDERR:"
-    echo "- given stderr:"
-    stderr=$(cat "${stderr}" | sed 's/^.*line [0-9]*: /bash: /')
-    [[ -n "${stderr}" ]] && echo "${stderr}"
-    echo "- expected stderr:"
-    [[ -n "${expected_stderr}" ]] && echo "${expected_stderr}"
-    if [[ "$(echo "${expected_stderr}")" == "$(echo "${stderr}")" ]]; then
-      echo "--> stderr OK"
-    else
-      die "--> stderr KO"
-    fi
-  fi
+    main()
 
-  expected_stdout=$(get_stdout "${comments}")
-  if [[ $? -eq 0 ]]; then
-    echo "--STDOUT:"
-    echo "- given stdout:"
-    cat "$stdout"
-    echo "- expected stdout:"
-    [[ -n "${expected_stdout}" ]] && echo "${expected_stdout}"
-    if [[ "$(echo -n "${expected_stdout}")" == "$(cat "${stdout}")" ]]; then
-      echo "--> stdout OK"
-    else
-      die "--> stdout KO"
-    fi
-  fi
-
-  expected_exit_status=$(get_exit_status "${comments}")
-  if [[ $? -eq 0 ]]; then
-    echo "--EXIT STATUS:"
-    echo "- given exit status: ${exit_status}"
-    echo "- expected exit status: ${expected_exit_status}"
-    if [[ "${expected_exit_status}" == "${exit_status}" ]]; then
-      echo "--> exit status OK"
-    else
-      die "--> exit status KO"
-    fi
-  fi
-
-  expected_location=$(get_location "${comments}")
-  if [[ $? -eq 0 ]]; then
-    echo "--LOCATION:"
-    echo "- given location: ${location}"
-    echo "- expected location: ${expected_location}"
-    if [[ "${expected_location}" == "${location}" ]]; then
-      echo "--> location OK"
-    else
-      die "--> location KO"
-    fi
-  fi
-
-  clean_test "${unit_test}"
-
-done
-
-echo -e "\nClose test suite ..."
-close_test_suite
-echo -e "... end\n"
-
+fi
