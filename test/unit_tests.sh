@@ -1,15 +1,11 @@
 # unit_tests.sh
 #
-# Provide a set of unit tests from test_suite script.
-#
-# Require:
-#
-# current directory: /home/user
-# user/group: user/user
-# environment variables:
-#   USER=user
-#   HOME=/home/user
-#   BHIST_FILENAME=<bhist_filename>
+# Set of unit test for bhist library. 
+# 
+# Create a user `$BHIST_USER` and run unit tests in his home.
+# Require to launch test as root user. You can use `run` script
+# to create a docker container instead of using root user directly
+# on your computer (it is better).
 
 # Helper
 
@@ -23,17 +19,28 @@ die() {
 
 init_test_suite() {
 
+  # Build environment
+  export BHIST_USER="bhist_user_test"
+  export BHIST_HOME="/home/$BHIST_USER"
+  export BHIST_FILENAME="$BHIST_HOME/.bashrc_bhist"
+  
+  sudo adduser --disabled-password --gecos "" "$BHIST_USER" || die "impossible to create '$BHIST_USER' user"
+  su - "BHIST_USER" || die "impossible to switch to user '$BHIST_USER'"
+  BHIST_FILENAME="$HOME/.bashrc_bhist"
+  wget "https://raw.githubusercontent.com/glegoux/browsing-history-shell/master/.bashrc_bhist" \
+    -o "$BHIST_FILENAME" || die "impossible to download bhist library"
+
   # Check environment
-  [[ "$USER" == "user" ]] || die "current user should be user"
-  [[ -d "$HOME" ]] || die "/home/user does not exist or is not a folder"
-  [[ "$HOME" == '/home/user' ]] || die "$HOME should be /home/user"
+  [[ "$USER" == "$BHIST_USER" ]] || die "current user should be '$BHIST_USER'"
+  [[ -d "$BHIST_HOME" ]] || die "'$BHIST_HOME' does not exist or is not a folder"
+  [[ "$HOME" == "$BHIST_HOME" ]] || die "$HOME should be '$BHIST_HOME'"
   
   [[ -n $BHIST_FILENAME ]] || die "environment variable BHIST_FILENAME is not defined"
   BHIST_FILENAME="$(realpath "$BHIST_FILENAME")"
   [[ -f $BHIST_FILENAME ]] || die "'$BHIST_FILENAME' does not exist or is not a file"
   
   # Init environment
-  cd "$HOME" || die "impossible to go to '$HOME'"
+  cd "$BHIST_HOME" || die "impossible to go to '$BHIST_HOME'"
   echo "go to $PWD"
 
   mkdir -vp {A,B,C}/{1,2,3} D/{:2,+,-,:-1} E/ "F F/" || die "impossible to create filesystem environment"
@@ -46,13 +53,14 @@ init_test_suite() {
 
 clean_test_suite() {
 
-  rm -rfv "$HOME"/{A,B,C,D,E,"F F"}
-
+  rm -rfv "$BHIST_HOME"/{A,B,C,D,E,"F F"}
+  deluser $BHIST_USER
+  
 }
 
 init_test() {
 
-  cd "$HOME" || die "impossible to go to '$HOME'"
+  cd "$BHIST_HOME" || die "impossible to go to '$BHIST_HOME'"
   echo "go to $PWD"
   BHIST_DIRS=([0]="$PWD")
   BHIST_CUR_INDEX=0
