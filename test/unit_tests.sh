@@ -29,8 +29,7 @@ init_test_suite() {
   [[ "$HOME" == '/home/user' ]] || die "$HOME should be /home/user"
   
   [[ -n $BHIST_FILENAME ]] || die "environment variable BHIST_FILENAME is not defined"
-  local bhist_file="$BHIST_HOME/$BHIST_FILENAME"
-  [[ -f $bhist_file ]] || die "'$bhist_file' does not exist or is not a file"
+  [[ -f $BHIST_FILENAME ]] || die "'$BHIST_FILENAME' does not exist or is not a file"
   
   # Init environment
   cd "$HOME" || die "impossible to go to '$HOME'"
