@@ -20,7 +20,7 @@ die() {
 init_test_suite() {
 
   # Build environment
-  export BHIST_USER="bhist_user_test"
+  export BHIST_USER="bhist_test"
   export BHIST_HOME="/home/$BHIST_USER"
   export BHIST_FILENAME="$BHIST_HOME/.bashrc_bhist"
   
