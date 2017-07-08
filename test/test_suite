@@ -282,6 +282,6 @@ if [[ "${FUNCNAME[0]}" == "main" ]]; then
     esac
   fi
 
-    main()
+    main
 
 fi
