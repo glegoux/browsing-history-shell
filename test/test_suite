@@ -3,10 +3,46 @@
 # ./test_suite
 #
 # Run test suite for a set of unit tests.
+#
+# You define a `unit_tests.sh` file where there are:
+#
 
+
+# Usage and script arguments
 
 usage() {
-  echo "Usage: $(basename "$0")"
+cat << EOF
+usage: $(basename "$0")" unitest_file
+
+Run test suite for a set of unit tests.
+
+Each test is runned in the order where you defined it in the file.
+
+unitest_file:
+
+    file where you defined your set of unit tests in respecting
+    the appropriate format: 
+                 
+    Implementation of following abstract functions at beginning of file:
+
+      - init_test_suite: executed before the executution of set of unit tests.
+      - clean_test_suite: executed after the executution of set of unit tests.
+      - init_test: executed after the executution of set of unit tests.
+      - clean_test: executed after the executution of set of unit tests.
+
+    A set of unit tests where wach test should have this format:
+  
+      test_<name> { 
+        ## stdout
+        # <optional line(s) with test stdout>  
+        ## stderr
+        # <optional line(s) with test stderr> 
+        ## exit status <exit_status>
+        ## location <location>
+        <your test>
+       }                 
+                 
+EOF                        
 }
 
 
@@ -28,6 +64,8 @@ else
   esac
 fi
 
+
+# Global variables
 
 declare -r UNIT_TEST_PATHNAME="$1"
 declare -ar FUNCTIONS=(init_test_suite clean_test_suite init_test clean_test)
