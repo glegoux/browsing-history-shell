@@ -163,7 +163,11 @@ clean_test_verbose() {
 
 # Run unit tests
 
-source "$UNIT_TEST_PATHNAME"
+source "$UNIT_TEST_PATHNAME" || die "impossible to import '$UNIT_TEST_PATHNAME' in bash environment"
+
+unit_tests=$(typeset -F | sed "s/declare -f //" | grep ^test_)
+
+[[ -z "${unit_tests}" ]] && { echo "no one unit test"; exit 0 }
 
 echo "Initialize test suite ..."
 check_functions
@@ -171,10 +175,6 @@ init_test_suite
 echo "... end"
 
 trap '[ $? -eq 0 ] || clean_test_suite_verbose true' EXIT
-
-unit_tests=$(typeset -F | sed "s/declare -f //" | grep ^test_)
-
-[[ -z "${unit_tests}" ]] && { echo "no one unit test"; exit 0 }
 
 for unit_test in ${unit_tests}; do
 
