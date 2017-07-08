@@ -29,7 +29,8 @@ sudo cp -v ./unit_tests.sh "$BHIST_HOME"
 
 sudo chown -R "$BHIST_USER:$BHIST_USER" "$BHIST_HOME"
   
-su --login "$BHIST_USER" --shell /bin/bash -c './test_suite unit_tests.sh' \
+sudo BHIST_USER=$BHIST_USER BHIST_HOME=$BHIST_HOME BHIST_FILENAME=BHIST_FILENAME \
+  su --login "$BHIST_USER" --shell /bin/bash -c './test_suite unit_tests.sh' \
   || die "impossible to launch unit tests as '$BHIST_USER' user"
   
 sudo deluser --remove-home "$BHIST_USER"
