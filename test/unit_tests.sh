@@ -2,10 +2,15 @@
 #
 # Set of unit test for bhist library. 
 # 
-# Create a user `$BHIST_USER` and run unit tests in his home.
-# Require to launch test as root user. You can use `run` script
-# to create a docker container instead of using root user directly
-# on your computer (it is better).
+# Require:
+#
+#  environment variables:
+#    BHIST_USER=user
+#    BHIST_HOME=/home/user
+#    BHIST_FILENAME=<bhist_filename>
+#  
+#  user/group: user/user
+#  location: /home/buser
 
 # Helper
 
