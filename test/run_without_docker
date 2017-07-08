@@ -2,12 +2,21 @@
 #
 # ./run_without_docker
 #
-# Run unit tests in building test environment 
+# Run as root user unit tests for bhist library.
+#
+# We use container docker instead of running this script
+# directly as root on your computer.
+# (it is better).
 
 # Build environment
 export BHIST_USER="bhist_test"
 export BHIST_HOME="/home/$BHIST_USER"
 export BHIST_FILENAME="$BHIST_HOME/.bashrc_bhist"
+
+die() {
+  >&2 echo "ERROR: $1 !"
+  exit 1
+}
 
 sudo adduser --disabled-password --gecos "" "$BHIST_USER" \
   || die "impossible to create '$BHIST_USER' user"
