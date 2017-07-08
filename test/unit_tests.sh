@@ -15,15 +15,16 @@ die() {
 
 init_test_suite() {
 
+  # Check and build unit test environment
+  [[ -z BHIST_USER ]] || die "environment variable BHIST_USER is not defined"
+  [[ "$(id -un)" == "$BHIST_USER" ]] || die "current user should be '$BHIST_USER'"
+  
+  [[ -z BHIST_HOME ]] || die "environment variable BHIST_HOME is not defined"
+  [[ "$(pwd)" == "$BHIST_HOME" ]] || die "pwd sould be '$BHIST_HOME'"
+ 
+  # Init environment
   cd
   echo "go to $PWD"
-
-  # Check and build unit test environment
-  [[ "$(id -un)" == "$BHIST_USER" ]] \
-    || die "current user should be '$BHIST_USER'"
-
-  [[ "$(pwd)" == "$BHIST_HOME" ]] \
-    || die "pwd sould be '$BHIST_HOME'"
 
   mkdir -vp {A,B,C}/{1,2,3} D/{:2,+,-,:-1} E/ "F F/"
   chmod -v 000 E
