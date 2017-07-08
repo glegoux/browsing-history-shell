@@ -9,7 +9,7 @@
 
 usage() {
 cat << EOF
-usage: $(basename "$0")" unitest_file
+usage: $(basename "$0") unitest_file
 
 Run test suite for a set of unit tests.
 
