@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+#
+# ./run_without_docker
+#
+# Run unit tests in building test environment 
+
+# Build environment
+export BHIST_USER="bhist_test"
+export BHIST_HOME="/home/$BHIST_USER"
+export BHIST_FILENAME="$BHIST_HOME/.bashrc_bhist"
+
+sudo adduser --disabled-password --gecos "" "$BHIST_USER" \
+  || die "impossible to create '$BHIST_USER' user"
+  
+su --login "$BHIST_USER" --shell /bin/bash -c './test_suite unit_tests.sh' \
+  || die "impossible to launch unit tests as '$BHIST_USER' user"
