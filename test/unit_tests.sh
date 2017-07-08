@@ -46,7 +46,7 @@ clean_test_suite() {
 
 init_test() {
 
-  cd
+  cd "$BHIST_HOME"
   echo "go to $PWD"
   BHIST_DIRS=([0]="$PWD")
   BHIST_CUR_INDEX=0
