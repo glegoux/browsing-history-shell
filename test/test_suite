@@ -190,9 +190,7 @@ for unit_test in ${unit_tests}; do
 
   comments=$(get_comments "${unit_test}")
   if [[ $? -ne 0 ]]; then
-    echo "no comment found !"
-    clean_test_verbose "${unit_test}"
-    continue
+    die "no comment found !"
   fi
 
   expected_stderr=$(get_stderr "${comments}")
@@ -206,8 +204,7 @@ for unit_test in ${unit_tests}; do
     if [[ "$(echo "${expected_stderr}")" == "$(echo "${stderr}")" ]]; then
       echo "--> stderr OK"
     else
-      >&2 echo "--> stderr KO"
-      exit 1
+      die "--> stderr KO"
     fi
   fi
 
@@ -221,8 +218,7 @@ for unit_test in ${unit_tests}; do
     if [[ "$(echo -n "${expected_stdout}")" == "$(cat "${stdout}")" ]]; then
       echo "--> stdout OK"
     else
-      >&2 echo "--> stdout KO"
-      exit 1
+      die "--> stdout KO"
     fi
   fi
 
@@ -234,8 +230,7 @@ for unit_test in ${unit_tests}; do
     if [[ "${expected_exit_status}" == "${exit_status}" ]]; then
       echo "--> exit status OK"
     else
-      >&2 echo "--> exit status KO"
-      exit 1
+      die "--> exit status KO"
     fi
   fi
 
@@ -247,8 +242,7 @@ for unit_test in ${unit_tests}; do
     if [[ "${expected_location}" == "${location}" ]]; then
       echo "--> location OK"
     else
-      >&2 echo "--> location KO"
-      exit 1
+      die "--> location KO"
     fi
   fi
 
