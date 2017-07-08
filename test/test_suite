@@ -23,10 +23,10 @@ unittest_file:
                  
     Implementation of following abstract functions at beginning of file:
 
-      - init_test_suite: executed before the execution of set of unit tests.
-      - clean_test_suite: executed after the execution of set of unit tests.
-      - init_test: executed after the execution of set of unit tests.
-      - clean_test: executed after the execution of set of unit tests.
+      - void init_test_suite(): executed before set of unit tests.
+      - void clean_test_suite(): executed after set of unit tests.
+      - void init_test(test_name): executed before each unit test.
+      - void clean_test(test_name): executed after each unit test.
 
     A set of unit tests where each test should have this format:
   
