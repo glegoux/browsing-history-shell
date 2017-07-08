@@ -174,7 +174,7 @@ trap '[ $? -eq 0 ] || clean_test_suite_verbose true' EXIT
 
 unit_tests=$(typeset -F | sed "s/declare -f //" | grep ^test_)
 
-[[ -z "${unit_tests}" ]] && echo -e "no one unit test\n"
+[[ -z "${unit_tests}" ]] && { echo "no one unit test"; exit 0 }
 
 for unit_test in ${unit_tests}; do
 
