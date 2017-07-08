@@ -26,6 +26,8 @@ sudo adduser --disabled-password --gecos "" "$BHIST_USER" \
 sudo cp -v ../bashrc_bhist "$BHIST_HOME"
 sudo cp -v ./test_suite "$BHIST_HOME"
 sudo cp -v ./unit_tests "$BHIST_HOME"
+
+chown -R "$BHIST_USER:$BHIST_USER" "$BHIST_HOME"
   
 su --login "$BHIST_USER" --shell /bin/bash -c './test_suite unit_tests.sh' \
   || die "impossible to launch unit tests as '$BHIST_USER' user"
