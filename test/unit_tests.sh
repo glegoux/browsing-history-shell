@@ -9,7 +9,7 @@
 # environment variables:
 #   USER=user
 #   HOME=/home/user
-#   BHIST_FILENAME=<bhist_filename>
+#   BHIST_FILENAME=<bhist_filename> (should be absolute path!)
 
 # Helper
 
