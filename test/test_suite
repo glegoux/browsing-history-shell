@@ -3,9 +3,6 @@
 # ./test_suite
 #
 # Run test suite for a set of unit tests.
-#
-# You define a `unit_tests.sh` file where there are:
-#
 
 
 # Usage and script arguments
