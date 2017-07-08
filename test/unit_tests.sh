@@ -27,7 +27,7 @@ init_test_suite() {
   [[ -f $bhist_file ]] || die "$bhist_file is not exist or is not a file"
   
   # Init environment
-  cd
+  cd "$BHIST_HOME"
   echo "go to $PWD"
 
   mkdir -vp {A,B,C}/{1,2,3} D/{:2,+,-,:-1} E/ "F F/"
