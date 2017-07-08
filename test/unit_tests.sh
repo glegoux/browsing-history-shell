@@ -24,10 +24,6 @@ die() {
 
 init_test_suite() {
 
-  BHIST_FILENAME="$HOME/.bashrc_bhist"
-  wget "https://raw.githubusercontent.com/glegoux/browsing-history-shell/master/.bashrc_bhist" \
-    -o "$BHIST_FILENAME" || die "impossible to download bhist library"
-
   # Check environment
   [[ "$USER" == "$BHIST_USER" ]] || die "current user should be '$BHIST_USER'"
   [[ -d "$BHIST_HOME" ]] || die "'$BHIST_HOME' does not exist or is not a folder"
