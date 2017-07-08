@@ -16,10 +16,10 @@ die() {
 init_test_suite() {
 
   # Check and build unit test environment
-  [[ -z BHIST_USER ]] || die "environment variable BHIST_USER is not defined"
+  [[ -n $BHIST_USER ]] || die "environment variable BHIST_USER is not defined"
   [[ "$(id -un)" == "$BHIST_USER" ]] || die "current user should be '$BHIST_USER'"
   
-  [[ -z BHIST_HOME ]] || die "environment variable BHIST_HOME is not defined"
+  [[ -n $BHIST_HOME ]] || die "environment variable BHIST_HOME is not defined"
   [[ "$(pwd)" == "$BHIST_HOME" ]] || die "pwd sould be '$BHIST_HOME'"
  
   # Init environment
