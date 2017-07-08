@@ -165,10 +165,10 @@ clean_test_verbose() {
 
 source "$UNIT_TEST_PATHNAME"
 
-echo "Initializing test suite ..."
+echo "Initialize test suite ..."
 check_functions
 init_test_suite
-echo
+echo "... end"
 
 trap '[ $? -eq 0 ] || clean_test_suite_verbose true' EXIT
 
@@ -259,4 +259,7 @@ for unit_test in ${unit_tests}; do
 
 done
 
+echo "Close test suite ..."
+clean_test_suite
 clean_test_suite_verbose
+echo "... end"
