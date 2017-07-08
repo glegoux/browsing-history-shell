@@ -39,7 +39,7 @@ init_test_suite() {
   chmod -v -x E || die "impossible to change permissions for 'E' folder"
 
   # Enable browsing history
-  source "$bhist_file" || die "impossible to import '$bhist_file' in bash environment"
+  source "$BHIST_FILENAME" || die "impossible to import '$bhist_file' in bash environment"
 
 }
 
