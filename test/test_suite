@@ -169,7 +169,7 @@ unit_tests=$(typeset -F | sed "s/declare -f //" | grep ^test_)
 
 [[ -z "${unit_tests}" ]] && die "no one unit test"
 
-echo "Initialize test suite ..."
+echo -e "\nInitialize test suite ..."
 init_test_suite
 echo -e "... end\n"
 
@@ -250,7 +250,7 @@ for unit_test in ${unit_tests}; do
 
 done
 
-echo "Close test suite ..."
+echo -e "\nClose test suite ..."
 close_test_suite
 echo -e "... end\n"
 
