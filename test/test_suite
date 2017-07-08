@@ -246,7 +246,7 @@ for unit_test in ${unit_tests}; do
     fi
   fi
 
-  clean_test_verbose "${unit_test}"
+  clean_test "${unit_test}"
 
 done
 
