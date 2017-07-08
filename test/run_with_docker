@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# ./run
+# ./run_with_docker
 #
 # Run unit tests in building test environment in container docker,
 # and allow to connect to created container for interactive tests, then offer to delete or not
