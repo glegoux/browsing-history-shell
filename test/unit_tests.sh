@@ -20,11 +20,11 @@ init_test_suite() {
   [[ "$(id -un)" == "$BHIST_USER" ]] || die "current user should be '$BHIST_USER'"
   
   [[ -n $BHIST_HOME ]] || die "environment variable BHIST_HOME is not defined"
-  [[ -d "$BHIST_HOME" ]] || die "'$BHIST_HOME' is not exist or is not a folder"
+  [[ -d "$BHIST_HOME" ]] || die "'$BHIST_HOME' does not exist or is not a folder"
   
   [[ -n $BHIST_FILENAME ]] || die "environment variable BHIST_FILENAME is not defined"
   local bhist_file="$BHIST_HOME/$BHIST_FILENAME"
-  [[ -f $bhist_file ]] || die "'$bhist_file' is not exist or is not a file"
+  [[ -f $bhist_file ]] || die "'$bhist_file' does not exist or is not a file"
   
   # Init environment
   cd "$BHIST_HOME" || die "impossible to go to '$BHIST_HOME'"
