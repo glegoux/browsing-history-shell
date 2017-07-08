@@ -165,7 +165,6 @@ source "$UNIT_TEST_PATHNAME"
 
 echo "Initializing test suite ..."
 check_functions
-
 init_test_suite
 echo
 
