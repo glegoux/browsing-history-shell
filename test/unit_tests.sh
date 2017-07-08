@@ -52,7 +52,6 @@ init_test_suite() {
 clean_test_suite() {
 
   rm -rfv "$BHIST_HOME"/{A,B,C,D,E,"F F"}
-  sudo deluser $BHIST_USER
   
 }
 
