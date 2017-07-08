@@ -125,7 +125,7 @@ test_05() {
   ## stderr
   # bash: cd: E: Permission denied
   ## exit status 1
-  ## location /home/bhist_tes
+  ## location /home/bhist_test
   __bhist_changedir E
 }
 
