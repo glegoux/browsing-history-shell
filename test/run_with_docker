@@ -16,10 +16,10 @@ declare -r WDP="$(dirname $WD)"
 declare -r INAME="bhist"
 declare -r CNAME="bhist_test"
 declare -r HOST_VOL="$WDP/test/"
-declare -r CONT_VOL="/home/user/test/"
-declare -r TEST_USER="user"
-declare -r TEST_SUITE_FILE="/home/user/test/test_suite"
-declare -r UNIT_TEST_FILE="/home/user/test/unit_tests.sh"
+declare -r CONT_VOL="/home/bhist_test/test/"
+declare -r TEST_USER="bhist_test"
+declare -r TEST_SUITE_FILE="/home/bhist_test/test/test_suite"
+declare -r UNIT_TEST_FILE="/home/bhist_test/test/unit_tests.sh"
 cd - > /dev/null
 
 
@@ -129,8 +129,9 @@ main() {
   echo
   execute_docker_command "${cuuid}" "${TEST_USER}" "${TEST_SUITE_FILE} ${UNIT_TEST_FILE}"
 
-  message -n "- Connection to container docker for interactive tests [y/n]: "
   local answer
+
+  message -n "- Connection to container docker for interactive tests [y/n]: "
   read answer
   if [[ -z "${answer}" ]] || [[ "${answer}" == "y" ]]; then
     connect_docker_container "${cuuid}" "${TEST_USER}"

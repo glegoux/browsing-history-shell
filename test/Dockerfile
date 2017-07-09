@@ -1,9 +1,9 @@
 # Dockerfile
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER Gilles Legoux <gilles.legoux@gmail.com>
 
 # environment variable
-ENV BHIST_USER user
+ENV BHIST_USER bhist_test
 ENV BHIST_HOME /home/$BHIST_USER
 ENV BHIST_FILENAME .bashrc_bhist
 
