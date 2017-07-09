@@ -121,7 +121,7 @@ Try to use https://google-styleguide.googlecode.com/svn/trunk/shell.xml.
 
 There is a library to do unit test in bash.  
 
-Use docker container for interactive and unit tests. Launch the script `./run`.
+Use docker container for interactive and unit tests. Launch the script `./run_with_docker`.  
 See [test/](https://github.com/glegoux/browsing-history-shell/blob/master/test/).  
 
 11/11, 100%, All unit tests OK.
