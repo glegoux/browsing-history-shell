@@ -93,11 +93,7 @@ execute_docker_command() {
   local cuuid="$1"
   local user="${2:-root}"
   local cmd="${3:-"echo Hello, World !"}"
-  if [[ "${user}" == "root" ]]; then
-    docker exec "${cuuid}" ${cmd} || return $?
-  else
-    docker exec -u "${user}" "${cuuid}" ${cmd} || return $?
-  fi
+  docker exec -u "${user}" "${cuuid}" ${cmd} || return $?
   return 0
 
 }
@@ -112,12 +108,8 @@ connect_docker_container() {
 
   local cuuid="$1"
   local user="${2:-root}"
-  if [[ "${user}" == "root" ]]; then
-    docker exec -it "${cuuid}" /bin/bash || return $?
-  else
-    docker exec -it -u "${user}" "${cuuid}" /bin/bash -c "cd; /bin/bash" \
-      || return $?
-  fi
+  docker exec -it -u "${user}" "${cuuid}" /bin/bash -c "cd; /bin/bash" \
+    || return $?
   return 0
 
 }

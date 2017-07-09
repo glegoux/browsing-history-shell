@@ -27,7 +27,7 @@ init_test_suite() {
 
   # Check environment
   [[ -n $BHIST_USER ]] || die "environment variable BHIST_USER is not defined"
-  [[ "$USER" == "$BHIST_USER" ]] || die "current user should be '$BHIST_USER'"
+  [[ "$(id -un)" == "$BHIST_USER" ]] || die "current user should be '$BHIST_USER'"
   
   [[ -n $BHIST_HOME ]] || die "environment variable BHIST_HOME is not defined"
   [[ -d "$BHIST_HOME" ]] || die "'$BHIST_HOME' does not exist or is not a folder"
