@@ -7,7 +7,7 @@ services:
   - docker
 
 script: 
-  - ./test/run_with_docker
+  - yes | sed s/y/n/ | ./test/run_with_docker
  
 after_success:
   - docker --version
