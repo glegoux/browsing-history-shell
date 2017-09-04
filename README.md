@@ -1,5 +1,7 @@
 # Browsing History Shell
 
+[![Build Status](https://travis-ci.org/glegoux/browsing-history-shell.svg?branch=master)](https://travis-ci.org/glegoux/browsing-history-shell)
+
 ![alt text][demo]
 
 It's very useful, it becomes quickly essential and it takes less than one minute to install.
