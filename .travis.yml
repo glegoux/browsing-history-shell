@@ -1,0 +1,11 @@
+sudo: true
+dist: trusty
+
+services:  
+    - docker
+
+script:
+ - ./test/run_with_docker
+ 
+ after_success:
+  - docker --version
