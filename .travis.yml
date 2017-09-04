@@ -1,11 +1,13 @@
+language: bash
+
 sudo: true
 dist: trusty
 
 services:  
-    - docker
+  - docker
 
-script:
- - ./test/run_with_docker
+script: 
+  - ./test/run_with_docker
  
- after_success:
+after_success:
   - docker --version
