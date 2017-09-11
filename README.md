@@ -117,7 +117,7 @@ You can comment or delete the matching lines in `.bashrc_bhist`, in order to hav
 
 ## Coding Style
 
-Try to use https://google-styleguide.googlecode.com/svn/trunk/shell.xml.
+Try to use https://google.github.io/styleguide/shell.xml.
 
 ## Tests
 
