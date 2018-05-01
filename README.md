@@ -133,7 +133,7 @@ See [test/](https://github.com/glegoux/browsing-history-shell/blob/master/test/)
 
 ## License 
 
-Released under the MIT License, see [LICENSE](https://github.com/glegoux/browsing-history-shell/blob/master/LICENSE/).
+Released under the MIT License, see [LICENSE](LICENSE).
 
 [demo]: https://github.com/glegoux/browsing-history-shell/blob/master/demo.gif "demo"
 
